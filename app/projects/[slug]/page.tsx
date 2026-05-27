@@ -5,6 +5,16 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Carousel from "../../components/carrousel";
 
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const project = projects.find((p) => p.slug === slug);
+
+  return {
+    title: project?.title.replace("\n", " ") ?? "Projet",
+    description: project?.description.split("\n")[0] ?? "",
+  };
+}
+
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
 }

@@ -1,6 +1,11 @@
 import FadeUpOnScroll from "../components/fadeUpOnScroll";
 import Link from "next/link";
 
+export const metadata = {
+  title: "Projets",
+  description: "...",
+};
+
 export default function Projects() {
   return (
     <div className="w-full font-[urbanist]">

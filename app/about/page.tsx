@@ -1,6 +1,10 @@
 import SlideLeftOnScroll from "../components/slideLeftOnScroll";
 import Faq from "../components/faq";
 
+export const metadata = {
+  title: "A Propos",
+  description: "...",
+};
 export default function About() {
   return (
     <div className="flex flex-col text-black font-[urbanist]">
