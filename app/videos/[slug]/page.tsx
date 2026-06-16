@@ -3,7 +3,7 @@
 import videos from "../../videodata";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-export const runtime = 'edge'
+
 
 export default function VideoPage() {
   const params = useParams();
