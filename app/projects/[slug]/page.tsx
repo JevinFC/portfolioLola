@@ -4,7 +4,7 @@ import CountUp from "../../components/countUp";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Carousel from "../../components/carrousel";
-export const runtime = 'edge';
+
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
