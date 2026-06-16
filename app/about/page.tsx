@@ -19,9 +19,7 @@ export default function About() {
           Qui suis-je ?
         </h2>
 
-        <p className="text-black text-lg mb-6 mt-6 text-left">
-          Avec trois ans en communication en alternance.
-        </p>
+        
       </SlideLeftOnScroll>
     </div>
 
