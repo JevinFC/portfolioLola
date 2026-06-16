@@ -1,8 +1,9 @@
+import React from "react";
 
 interface AvisProps {
     avisText: string;
     authorName: string;
-    authorTitle: string;
+    authorTitle: React.ReactNode;
     authorImg: string;
 }
 
