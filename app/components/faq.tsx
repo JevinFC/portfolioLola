@@ -57,7 +57,7 @@ export default function Faq() {
 
             {/* Réponse */}
             <div
-              ref={(el) => (answerRefs.current[index] = el)}
+             ref={(el) => { answerRefs.current[index] = el; }}
               className="max-h-0 overflow-hidden transition-[max-height] duration-300 ease-in-out"
             >
               <p className="px-6 pb-6 pt-2 text-sm md:text-base text-zinc-600 leading-relaxed">
