@@ -112,7 +112,7 @@ export default function Home() {
             cardImg="/photosHome/CouvChatodo.webp"
             cardTitle="Scène nationale X Chato'do"
             cardDesc="Capsule vidéo sur la collaboration"
-            linkProject="/videos/video-2"
+            linkProject="https://res.cloudinary.com/dkwxhd6ck/video/upload/v1781640713/SceneNationaleXChatoDo_l9awwq.mp4"
             isVideo={true}
 />
 
@@ -121,7 +121,7 @@ export default function Home() {
             cardImg="/photosHome/CouvDecouvertes.webp"
             cardTitle="Découvertes Scène nationale"
             cardDesc="Retour en images sur un projet"
-            linkProject="/videos/video-1"
+            linkProject="https://res.cloudinary.com/dkwxhd6ck/video/upload/v1781640901/2DecouvertesHAG2526_hwv1jf.mp4"
             isVideo={true}
 />
 
@@ -129,7 +129,7 @@ export default function Home() {
               cardImg="/photosHome/CouvTeaser.webp"
               cardTitle="Teaser Scène nationale"
               cardDesc="Création d’un teaser"
-              linkProject="/projects/teaser"
+              linkProject="https://res.cloudinary.com/dkwxhd6ck/video/upload/v1781640740/TeaserHalleAuxGrains2526_klb2zx.mp4"
               isVideo={true}
             />
 
@@ -137,7 +137,7 @@ export default function Home() {
               cardImg="/photosHome/CouvPoleDesArts.webp"
               cardTitle="Présentation Pôle des Arts"
               cardDesc="Vidéo de présentation"
-              linkProject="/projects/ludo"
+              linkProject="https://res.cloudinary.com/dkwxhd6ck/video/upload/v1781694511/4PoleDesArts_dwxpqi.mp4"
               isVideo={true}
             />
             
