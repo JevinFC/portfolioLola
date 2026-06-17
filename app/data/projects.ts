@@ -41,9 +41,9 @@ export const projects: Project[] = [
     image: "/photosHome/HalleAuxGrains.webp",
     imagesCarrousel: [
   { src: "/photosProjectSlugs/photosHAG/BrochureHAG.webp", fit:"cover"},
-  { src: "/photosProjectSlugs/photosHAG/Récap Génération Climat.mp4", videoSlug: "video-3", fit:"contain", thumbnail:"/photosProjectSlugs/photosHAG/thumbnailGeneClimat.png"},
-  { src: "/photosProjectSlugs/photosHAG/TeaserHalleAuxGrains2526.mp4", videoSlug: "video-4", fit:"contain", thumbnail:"/photosProjectSlugs/photosHAG/thumbnailTeaser.webp"},
-  { src: "/photosProjectSlugs/photosHAG/Vidéo voeux 2026.mp4", videoSlug: "video-5", fit:"contain", thumbnail:"/photosProjectSlugs/photosHAG/thumbnailvoeux2026.png" },
+  { src: "https://res.cloudinary.com/dkwxhd6ck/video/upload/v1781640759/RecapGenerationClimat_xy0jya.mp4", videoSlug: "video-3", fit:"contain", thumbnail:"/photosProjectSlugs/photosHAG/thumbnailGeneClimat.png"},
+  { src: "https://res.cloudinary.com/dkwxhd6ck/video/upload/v1781640740/TeaserHalleAuxGrains2526_klb2zx.mp4", videoSlug: "video-4", fit:"contain", thumbnail:"/photosProjectSlugs/photosHAG/thumbnailTeaser.webp"},
+  { src: "https://res.cloudinary.com/dkwxhd6ck/video/upload/v1781640726/Vide%CC%81o_voeux_2026_mxfho0.mp4", videoSlug: "video-5", fit:"contain", thumbnail:"/photosProjectSlugs/photosHAG/thumbnailvoeux2026.png" },
 ],
    stats: [
   { countTarget: 1600, prefix: "+ ", label: "followers" },

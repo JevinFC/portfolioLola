@@ -29,6 +29,12 @@ const videos = [
     url: "https://res.cloudinary.com/dkwxhd6ck/video/upload/v1781640726/Vide%CC%81o_voeux_2026_mxfho0.mp4",
     description: "Vidéo de voeux de la Halle aux Grains"
   },
+  {
+    title: "Vidéo 6 - Présentation Pôle des Arts",
+    slug: "video-6",
+    url: "https://res.cloudinary.com/dkwxhd6ck/video/upload/v1781694511/4PoleDesArts_dwxpqi.mp4",
+    description: "Vidéo de présentation du Pôle des Arts"
+  }
 ];
 
 export default videos;

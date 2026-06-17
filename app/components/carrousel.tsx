@@ -54,11 +54,11 @@ export default function Carousel({ images }: CarouselProps) {
 
             return (
               <div
-                key={item.src}
+                key={i}
                 className={`transition-opacity duration-700 ${
                   i === current
-                    ? "opacity-100 relative"        // prend de la place → définit la hauteur
-                    : "opacity-0 absolute inset-0"  // sort du flux → ne pousse pas
+                    ? "opacity-100 relative"
+                    : "opacity-0 absolute inset-0 pointer-events-none"
                 }`}
               >
                 {video ? (
@@ -109,7 +109,7 @@ export default function Carousel({ images }: CarouselProps) {
         {/* Miniatures */}
         <div className="flex gap-3 mt-4 overflow-x-auto pb-1">
           {images.map((item, i) => (
-            <button key={item.src} onClick={() => goTo(i)} className={`relative flex-shrink-0 w-20 h-14 rounded-md overflow-hidden border-2 transition-all duration-200 ${i === current ? "border-[#1800AD]" : "border-transparent opacity-50 hover:opacity-80"}`}>
+            <button key={i} onClick={() => goTo(i)} className={`relative flex-shrink-0 w-20 h-14 rounded-md overflow-hidden border-2 transition-all duration-200 ${i === current ? "border-[#1800AD]" : "border-transparent opacity-50 hover:opacity-80"}`}>
               {isVideo(item.src) ? (
                 <>
                   {item.thumbnail ? (
