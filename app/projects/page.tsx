@@ -65,7 +65,7 @@ export default function Projects() {
           <FadeUpOnScroll>
             <img
               src="/photosHome/HalleAuxGrains.webp"
-              alt="Projet"
+              alt="photo Halle aux grains, Scène nationale de Blois"
               className="w-full max-w-[550px] h-auto object-cover rounded-md shadow-lg"
             />
           </FadeUpOnScroll>
@@ -79,7 +79,7 @@ export default function Projects() {
           <FadeUpOnScroll>
             <img
               src="/photosHome/CouvPoleDesArts.webp"
-              alt="Projet"
+              alt="photo Pôle des arts Paul Gaudet"
               className="w-full max-w-[550px] h-auto object-cover rounded-md shadow-lg"
             />
           </FadeUpOnScroll>
@@ -149,7 +149,7 @@ export default function Projects() {
           <FadeUpOnScroll>
             <img
               src="/photosHome/ChambresEnWrach.webp"
-              alt="Projet"
+              alt="Photo Chambres en Wrac’h de L’Aber"
               className="w-full max-w-[550px] h-auto object-cover rounded-md shadow-lg"
             />
           </FadeUpOnScroll>
@@ -171,7 +171,7 @@ export default function Projects() {
       <FadeUpOnScroll className="flex flex-col text-center lg:text-left">
         <img
           src="/photosHome/photosProjects/ProjetLittleriders.webp"
-          alt="Projet 1"
+          alt="Projet Little Riders"
           className="w-full object-cover rounded-md shadow-lg"
         />
         <h3 className="text-xl font-semibold mt-4">
@@ -186,7 +186,7 @@ export default function Projects() {
       <FadeUpOnScroll className="lg:row-span-2 flex flex-col text-center lg:text-left">
         <img
           src="/photosHome/photosProjects/ProjetFormidable.webp"
-          alt="Projet 2"
+          alt="Projet Formidable"
           className="w-full h-full object-cover rounded-md shadow-lg"
         />
         <h3 className="text-xl font-semibold mt-4">
@@ -201,7 +201,7 @@ export default function Projects() {
       <FadeUpOnScroll className="flex flex-col text-center lg:text-left">
         <img
           src="/photosHome/photosProjects/ProjetPerrier.webp"
-          alt="Projet 3"
+          alt="Projet Perrier"
           className="w-full object-cover rounded-md shadow-lg"
         />
         <h3 className="text-xl font-semibold mt-4">

@@ -91,17 +91,30 @@ export default function Carousel({ images }: CarouselProps) {
           })}
 
           {/* Prev / Next */}
-          <button onClick={prev} className="absolute left-3 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition z-10">
+          <button
+            onClick={prev}
+            aria-label="Image précédente"
+            className="absolute left-3 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition z-10"
+          >
             <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" className="w-5 h-5"><polyline points="15 18 9 12 15 6" /></svg>
           </button>
-          <button onClick={next} className="absolute right-3 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition z-10">
+          <button
+            onClick={next}
+            aria-label="Image suivante"
+            className="absolute right-3 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition z-10"
+          >
             <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" className="w-5 h-5"><polyline points="9 18 15 12 9 6" /></svg>
           </button>
 
           {/* Dots */}
           <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 z-10">
             {images.map((_, i) => (
-              <button key={i} onClick={() => goTo(i)} className={`h-2 rounded-full transition-all duration-300 ${i === current ? "bg-white w-6" : "bg-white/50 w-2"}`} />
+              <button
+                key={i}
+                onClick={() => goTo(i)}
+                aria-label={`Aller à l'image ${i + 1}`}
+                className={`h-2 rounded-full transition-all duration-300 ${i === current ? "bg-white w-6" : "bg-white/50 w-2"}`}
+              />
             ))}
           </div>
         </div>
@@ -109,7 +122,12 @@ export default function Carousel({ images }: CarouselProps) {
         {/* Miniatures */}
         <div className="flex gap-3 mt-4 overflow-x-auto pb-1">
           {images.map((item, i) => (
-            <button key={i} onClick={() => goTo(i)} className={`relative flex-shrink-0 w-20 h-14 rounded-md overflow-hidden border-2 transition-all duration-200 ${i === current ? "border-[#1800AD]" : "border-transparent opacity-50 hover:opacity-80"}`}>
+            <button
+              key={i}
+              onClick={() => goTo(i)}
+              aria-label={`Voir l'élément ${i + 1} du carrousel`}
+              className={`relative flex-shrink-0 w-20 h-14 rounded-md overflow-hidden border-2 transition-all duration-200 ${i === current ? "border-[#1800AD]" : "border-transparent opacity-50 hover:opacity-80"}`}
+            >
               {isVideo(item.src) ? (
                 <>
                   {item.thumbnail ? (

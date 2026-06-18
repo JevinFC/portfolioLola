@@ -57,34 +57,37 @@ export default function ContactForm() {
             ${status === "success" ? "animate-pop" : ""}
           `}
         >
-          <input
-            type="text"
-            name="name"
-            placeholder="Votre nom"
-            value={form.name}
-            onChange={handleChange}
-            required
-            className="border border-zinc-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#1800AD]"
-          />
+         <input
+  type="text"
+  name="name"
+  placeholder="Votre nom"
+  aria-label="Votre nom"
+  value={form.name}
+  onChange={handleChange}
+  required
+  className="border border-zinc-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#1800AD]"
+/>
 
-          <input
-            type="email"
-            name="email"
-            placeholder="Votre email"
-            value={form.email}
-            onChange={handleChange}
-            required
-            className="border border-zinc-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#1800AD]"
-          />
+<input
+  type="email"
+  name="email"
+  placeholder="Votre email"
+  aria-label="Votre email"
+  value={form.email}
+  onChange={handleChange}
+  required
+  className="border border-zinc-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#1800AD]"
+/>
 
-          <textarea
-            name="message"
-            placeholder="Votre message"
-            value={form.message}
-            onChange={handleChange}
-            required
-            className="border border-zinc-300 rounded-md px-4 py-2 h-32 focus:outline-none focus:ring-2 focus:ring-[#1800AD]"
-          />
+<textarea
+  name="message"
+  placeholder="Votre message"
+  aria-label="Votre message"
+  value={form.message}
+  onChange={handleChange}
+  required
+  className="border border-zinc-300 rounded-md px-4 py-2 h-32 focus:outline-none focus:ring-2 focus:ring-[#1800AD]"
+/>
 
           <button
             type="submit"

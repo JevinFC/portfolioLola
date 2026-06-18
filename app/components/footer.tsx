@@ -17,6 +17,7 @@ export default function Footer() {
             <Link
               href="https://www.instagram.com/lolafetacom/"
               target="_blank"
+              aria-label="Voir le profil Instagram de Lola Gauchy"
               className="hover:opacity-80 transition-opacity"
             >
               <svg
@@ -34,6 +35,7 @@ export default function Footer() {
             <Link
               href="https://www.linkedin.com/in/lola-gauchy/"
               target="_blank"
+              aria-label="Voir le profil LinkedIn de Lola Gauchy"
               className="hover:opacity-80 transition-opacity hover"
             >
               <svg
