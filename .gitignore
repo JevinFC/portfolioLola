@@ -40,3 +40,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 **/*.mp4
+
+# Fichiers de plantage de Git Bash (Windows)
+*.stackdump
