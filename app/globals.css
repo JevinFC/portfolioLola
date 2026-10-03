@@ -9,13 +9,13 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-urbanist);
+  --font-display: var(--font-unbounded);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #ffffff;
-    --foreground: #ededed;
-  }
+/* Identité de Lola : couleurs reprises de son visuel Canva (bleu du site, rose des stickers) */
+@theme {
+  --color-brand: #1800AD;
+  --color-accent: #E9638E;
 }
 
 body {
@@ -26,12 +26,21 @@ body {
 html{
   scroll-behavior: smooth;
 }
+::selection {
+  background-color: var(--color-accent);
+  color: #fff;
+}
 @layer base {
+  /* Titres en Unbounded, texte courant en Urbanist */
+  h1, h2, h3 {
+    font-family: var(--font-unbounded), sans-serif;
+    letter-spacing: -0.01em;
+  }
   h4 {
     @apply text-2xl font-bold;
   }
   h3{
-    @apply text-5xl font-bold text-[#1800AD];
+    @apply text-5xl font-bold text-brand;
   }
   h5{
     @apply text-lg font-semibold;
@@ -138,4 +147,174 @@ html{
 }
 .animate-pop {
   animation: pop 0.4s ease-out;
+}
+
+/* Bandeau défilant : deux copies de la liste, décalées de -50 % pour boucler sans à-coup */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  animation: marquee 40s linear infinite;
+}
+.marquee-paused {
+  animation-play-state: paused;
+}
+
+/* ---------- Animations (étape 7) ---------- */
+
+/* Montée en fondu : entrée du hero et apparitions au défilement */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.rise {
+  animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+/* Apparition au défilement (FadeUpOnScroll) : une seule fois, sans clignotement */
+.reveal-pending {
+  opacity: 0;
+}
+.reveal-in {
+  animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+/* Titre du hero qui apparaît mot par mot */
+@keyframes wordIn {
+  from {
+    opacity: 0;
+    transform: translateY(0.45em) rotate(2deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.word-in {
+  display: inline-block;
+  animation: wordIn 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+/* Carte du hero : arrivée avec un léger rebond */
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.92) rotate(-2deg);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.02) rotate(0.5deg);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+.pop-in {
+  animation: popIn 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+/* Stickers qui flottent doucement (deux rythmes pour un effet naturel) */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(4deg);
+  }
+}
+.float {
+  animation: float 6s ease-in-out infinite;
+}
+.float-slow {
+  animation: float 7.5s ease-in-out infinite;
+}
+
+/* Petit gigotement des stickers au survol */
+@keyframes wiggle {
+  0%,
+  100% {
+    transform: rotate(0deg) scale(1);
+  }
+  25% {
+    transform: rotate(-10deg) scale(1.08);
+  }
+  75% {
+    transform: rotate(10deg) scale(1.08);
+  }
+}
+.wiggle-hover:hover {
+  animation: wiggle 0.5s ease-in-out;
+}
+
+/* Compteurs animés : valeur cachée jusqu'au démarrage du comptage,
+   puis affichée d'office au bout de 3 s si le JavaScript ne s'est pas chargé */
+@keyframes countupReveal {
+  to {
+    visibility: visible;
+  }
+}
+.countup-pending {
+  visibility: hidden;
+  animation: countupReveal 0s 3s forwards;
+}
+
+/* Respecte le réglage système « réduire les animations » */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .countup-pending {
+    visibility: visible;
+    animation: none;
+  }
+  /* Bandeau figé : les services s'affichent centrés, sur plusieurs lignes si besoin */
+  .marquee-track {
+    animation: none;
+    width: 100%;
+    justify-content: center;
+  }
+  .marquee-track > ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 0.5rem;
+  }
+  .marquee-track > ul + ul {
+    display: none;
+  }
+  .reveal-pending {
+    opacity: 1;
+  }
+  .rise,
+  .reveal-in,
+  .word-in,
+  .pop-in,
+  .float,
+  .float-slow,
+  .wiggle-hover:hover {
+    animation: none;
+  }
+  .animate-slide-left,
+  .animate-slide-right,
+  .animate-fade,
+  .fade-up,
+  .animate-shake,
+  .animate-pop {
+    animation: none;
+  }
+  .fade-up {
+    opacity: 1;
+  }
 }

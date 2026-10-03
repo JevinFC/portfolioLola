@@ -1,101 +1,115 @@
-"use client";
-
-import videos from "../../videodata";
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { notFound } from "next/navigation";
+import { ArrowRight } from "lucide-react";
+import videos from "../../videodata";
+import { projects } from "../../data/projects";
+import FadeUpOnScroll from "../../components/fadeUpOnScroll";
+import SectionTitle from "../../components/sectionTitle";
+import BandeauContact from "../../components/bandeauContact";
 
+// Une page générée à l'avance par vidéo : titre et description dans le <head>, sans rendu à la demande
+export function generateStaticParams() {
+  return videos.map((v) => ({ slug: v.slug }));
+}
+export const dynamicParams = false;
 
-export default function VideoPage() {
-  const params = useParams();
-  const slug = params.slug as string;
+// Nom court d'un projet : la première ligne de son titre (ex : « Halle aux grains »)
+const nomProjet = (slug?: string) => projects.find((p) => p.slug === slug)?.title.split("\n")[0];
 
-  const video = videos.find((v) => v.slug === slug);
+export default async function VideoPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const index = videos.findIndex((v) => v.slug === slug);
+  if (index === -1) notFound();
 
-  if (!video) {
-    return <p className="text-center mt-20">Vidéo introuvable</p>;
-  }
-
-  const index = videos.findIndex((v) => v.slug === video.slug);
-  const prev = videos[index - 1];
-  const next = videos[index + 1];
+  const video = videos[index];
+  const projet = nomProjet(video.projet);
+  // Les 3 vidéos suivantes (en boucle), pour continuer la visite
+  const suivantes = [1, 2, 3].map((k) => videos[(index + k) % videos.length]);
 
   return (
-    <div className="w-full flex flex-col items-center text-black font-[urbanist] px-6 py-20">
-      {/* Titre */}
-      <h1 className="text-4xl font-bold mb-6 mt-20 text-center">
-        {video.title}
-      </h1>
+    <div className="w-full bg-zinc-50 font-[urbanist] text-black">
 
-      {/* Description */}
-      <p className="mb-8 text-center max-w-xl">
-        {video.description}
-      </p>
-
-      {/* Vidéo + flèches */}
-      <div className="relative w-full max-w-3xl">
-        <video
-          controls
-          className="w-full rounded-lg shadow-lg max-h-[500px]"
-        >
-          <source src={video.url} type="video/mp4" />
-        </video>
-
-        {/* Flèche gauche */}
-        {prev && (
-          <Link
-            href={`/videos/${prev.slug}`}
-            aria-label="Vidéo précédente"
-            className="
-              absolute left-4 top-1/2 -translate-y-1/2
-              bg-black/40 hover:bg-black/70
-              w-12 h-12
-              flex items-center justify-center
-              rounded-full transition
-            "
+      {/* LA VIDÉO, avec son contexte */}
+      <section className="w-full bg-white pb-16 pt-32 md:pb-20 md:pt-36">
+        <div className="mx-auto max-w-[1000px] px-6 md:px-10">
+          <p className="rise text-sm font-semibold uppercase tracking-[0.15em] text-zinc-600">
+            Vidéo{projet ? ` · ${projet}` : ""}
+          </p>
+          <h1
+            className="rise mt-3 text-3xl font-extrabold leading-tight text-brand md:text-5xl"
+            style={{ animationDelay: "0.1s" }}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="white"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="w-6 h-6"
-            >
-              <polyline points="15 18 9 12 15 6" />
-            </svg>
-          </Link>
-        )}
+            {video.title}
+          </h1>
+          <p className="rise mt-4 max-w-2xl text-lg leading-relaxed text-zinc-700" style={{ animationDelay: "0.2s" }}>
+            {video.description}
+          </p>
 
-        {/* Flèche droite */}
-        {next && (
-          <Link
-            href={`/videos/${next.slug}`}
-            aria-label="Vidéo suivante"
-            className="
-              absolute right-4 top-1/2 -translate-y-1/2
-              bg-black/40 hover:bg-black/70
-              w-12 h-12
-              flex items-center justify-center
-              rounded-full transition
-            "
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="white"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="w-6 h-6"
+          <div className="pop-in mt-10 overflow-hidden rounded-2xl bg-black shadow-xl" style={{ animationDelay: "0.25s" }}>
+            <video controls preload="metadata" poster={video.poster} className="aspect-video w-full bg-black">
+              <source src={video.url} type="video/mp4" />
+            </video>
+          </div>
+
+          {projet && (
+            <Link
+              href={`/projects/${video.projet}`}
+              className="group mt-8 inline-flex items-center gap-2 rounded-full bg-brand px-6 py-3 font-semibold text-white transition hover:scale-105"
             >
-              <polyline points="9 18 15 12 9 6" />
-            </svg>
-          </Link>
-        )}
-      </div>
+              Voir l’étude de cas
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+            </Link>
+          )}
+        </div>
+      </section>
+
+      {/* D'AUTRES VIDÉOS */}
+      <section className="w-full bg-zinc-50 py-20 md:py-24">
+        <div className="mx-auto max-w-[1000px] px-6 md:px-10">
+          <FadeUpOnScroll>
+            <SectionTitle title="D’autres vidéos" sticker="smiley" />
+          </FadeUpOnScroll>
+
+          <ul className="mt-10 grid gap-6 md:grid-cols-3">
+            {suivantes.map((autre, i) => (
+              <FadeUpOnScroll key={autre.slug} as="li" delay={i * 90}>
+                <Link
+                  href={`/videos/${autre.slug}`}
+                  className="group block h-full overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-zinc-200 transition duration-300 hover:-translate-y-1 hover:shadow-lg"
+                >
+                  <span className="relative block aspect-video overflow-hidden bg-zinc-200">
+                    <img
+                      src={autre.poster}
+                      alt=""
+                      loading="lazy"
+                      className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                    />
+                    <span className="absolute right-3 top-3 flex h-10 w-10 items-center justify-center rounded-full bg-black/45">
+                      <svg viewBox="0 0 24 24" fill="white" className="ml-0.5 h-5 w-5" aria-hidden="true">
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </span>
+                  </span>
+                  <span className="block p-5">
+                    <span className="block text-xs font-semibold uppercase tracking-[0.12em] text-zinc-500">
+                      {nomProjet(autre.projet)}
+                    </span>
+                    <span className="mt-1 block font-semibold text-zinc-900">{autre.title}</span>
+                  </span>
+                </Link>
+              </FadeUpOnScroll>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* APPEL À L'ACTION FINAL : bandeau rose */}
+      <BandeauContact
+        titre={"Un projet vidéo ?"}
+        accent="Parlons-en."
+        lien={{ href: "/projects", label: "Tous les projets" }}
+      />
+
     </div>
   );
 }

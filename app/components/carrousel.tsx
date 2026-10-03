@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
 
 type CarouselItem = {
@@ -8,6 +8,7 @@ type CarouselItem = {
   videoSlug?: string;
   fit?: "cover" | "contain";
   thumbnail?: string;
+  alt?: string;
 };
 
 interface CarouselProps {
@@ -20,53 +21,68 @@ function isVideo(src: string) {
 
 export default function Carousel({ images }: CarouselProps) {
   const [current, setCurrent] = useState(0);
-  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const touchStartX = useRef<number | null>(null);
 
-  const startTimer = () => {
-    if (timerRef.current) clearInterval(timerRef.current);
-    timerRef.current = setInterval(() => {
-      setCurrent((i) => (i + 1) % images.length);
-    }, 3000);
+  // Pas de défilement automatique : le visuel change uniquement quand on clique, swipe ou utilise le clavier
+  const goTo = (i: number) => setCurrent((i + images.length) % images.length);
+  const prev = () => goTo(current - 1);
+  const next = () => goTo(current + 1);
+
+  // Flèches gauche / droite du clavier
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === "ArrowLeft") prev();
+    if (e.key === "ArrowRight") next();
   };
 
-  useEffect(() => {
-    startTimer();
-    return () => { if (timerRef.current) clearInterval(timerRef.current); };
-  }, [images.length]);
-
-  const goTo = (i: number) => {
-    setCurrent(i);
-    startTimer();
+  // Swipe sur mobile
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    touchStartX.current = e.touches[0].clientX;
   };
 
-  const prev = () => goTo((current - 1 + images.length) % images.length);
-  const next = () => goTo((current + 1) % images.length);
+  const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (touchStartX.current === null) return;
+    const delta = e.changedTouches[0].clientX - touchStartX.current;
+    if (Math.abs(delta) > 50) {
+      if (delta < 0) next();
+      else prev();
+    }
+    touchStartX.current = null;
+  };
 
   return (
     <div className="w-full bg-zinc-100 py-8">
-      <div className="max-w-[1100px] mx-auto px-10">
+      <div className="max-w-[1100px] mx-auto px-4 md:px-10">
 
-        {/* Conteneur qui s'adapte à la hauteur naturelle de l'image */}
-        <div className="relative w-full overflow-hidden rounded-xl">
+        {/* Cadre au ratio fixe : la hauteur ne change plus d'un visuel à l'autre */}
+        <div
+          role="region"
+          aria-roledescription="carrousel"
+          aria-label="Visuels du projet"
+          tabIndex={0}
+          onKeyDown={handleKeyDown}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+          className="relative w-full aspect-[4/5] sm:aspect-[4/3] lg:aspect-video overflow-hidden rounded-xl bg-zinc-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
+        >
           {images.map((item, i) => {
             const video = isVideo(item.src);
             const fitClass = item.fit === "cover" ? "object-cover" : "object-contain";
+            const isCurrent = i === current;
 
             return (
               <div
                 key={i}
-                className={`transition-opacity duration-700 ${
-                  i === current
-                    ? "opacity-100 relative"
-                    : "opacity-0 absolute inset-0 pointer-events-none"
+                inert={!isCurrent}
+                className={`absolute inset-0 transition-opacity duration-700 ${
+                  isCurrent ? "opacity-100" : "opacity-0 pointer-events-none"
                 }`}
               >
                 {video ? (
-                  <Link href={`/videos/${item.videoSlug}`} className="block w-full relative group">
+                  <Link href={`/videos/${item.videoSlug}`} className="block w-full h-full relative group">
                     {item.thumbnail ? (
-                      <img src={item.thumbnail} alt="" className={`w-full h-auto max-h-[600px] ${fitClass}`} />
+                      <img src={item.thumbnail} alt={item.alt ?? ""} className={`w-full h-full ${fitClass}`} />
                     ) : (
-                      <video src={item.src} className={`w-full h-auto max-h-[600px] ${fitClass}`} muted playsInline />
+                      <video src={item.src} className={`w-full h-full ${fitClass}`} muted playsInline />
                     )}
                     <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/55 transition">
                       <div className="w-16 h-16 rounded-full bg-white/20 border-2 border-white flex items-center justify-center">
@@ -75,15 +91,15 @@ export default function Carousel({ images }: CarouselProps) {
                         </svg>
                       </div>
                     </div>
-                    <p className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white text-sm bg-black/50 px-3 py-1 rounded-full whitespace-nowrap">
+                    <p className="absolute bottom-12 left-1/2 -translate-x-1/2 text-white text-sm bg-black/50 px-3 py-1 rounded-full whitespace-nowrap">
                       Voir la vidéo →
                     </p>
                   </Link>
                 ) : (
                   <img
                     src={item.src}
-                    alt={`Slide ${i + 1}`}
-                    className={`w-full h-auto max-h-[600px] ${fitClass}`}
+                    alt={item.alt ?? ""}
+                    className={`w-full h-full ${fitClass}`}
                   />
                 )}
               </div>
@@ -106,18 +122,21 @@ export default function Carousel({ images }: CarouselProps) {
             <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" className="w-5 h-5"><polyline points="9 18 15 12 9 6" /></svg>
           </button>
 
-          {/* Dots */}
-          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+          {/* Points : simple repère de position (trop petits pour être cliqués, la navigation passe par les flèches et les miniatures) */}
+          <div aria-hidden="true" className="pointer-events-none absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 z-10">
             {images.map((_, i) => (
-              <button
+              <span
                 key={i}
-                onClick={() => goTo(i)}
-                aria-label={`Aller à l'image ${i + 1}`}
                 className={`h-2 rounded-full transition-all duration-300 ${i === current ? "bg-white w-6" : "bg-white/50 w-2"}`}
               />
             ))}
           </div>
         </div>
+
+        {/* Annonce du visuel affiché, pour les lecteurs d'écran */}
+        <p className="sr-only" aria-live="polite">
+          Visuel {current + 1} sur {images.length}
+        </p>
 
         {/* Miniatures */}
         <div className="flex gap-3 mt-4 overflow-x-auto pb-1">
@@ -126,7 +145,8 @@ export default function Carousel({ images }: CarouselProps) {
               key={i}
               onClick={() => goTo(i)}
               aria-label={`Voir l'élément ${i + 1} du carrousel`}
-              className={`relative flex-shrink-0 w-20 h-14 rounded-md overflow-hidden border-2 transition-all duration-200 ${i === current ? "border-[#1800AD]" : "border-transparent opacity-50 hover:opacity-80"}`}
+              aria-current={i === current ? "true" : undefined}
+              className={`relative flex-shrink-0 w-20 h-14 rounded-md overflow-hidden border-2 transition-all duration-200 ${i === current ? "border-brand" : "border-transparent opacity-50 hover:opacity-80"}`}
             >
               {isVideo(item.src) ? (
                 <>

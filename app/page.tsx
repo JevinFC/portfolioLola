@@ -1,10 +1,15 @@
 import Link from "next/link";
-import CardProject from "./components/cardProject";
-import Avis from "./components/avis";
+import ProjectBento from "./components/projectBento";
+import CountUp from "./components/countUp";
+import HeroVisual from "./components/heroVisual";
+import Sticker from "./components/sticker";
+import AnimatedWords from "./components/animatedWords";
+import Marquee from "./components/marquee";
+import Services from "./components/services";
+import Temoignages from "./components/temoignages";
+import SectionTitle from "./components/sectionTitle";
 import FadeUpOnScroll from "./components/fadeUpOnScroll";
 import ContactForm from "./components/contactForm";
-import SlideLeftOnScroll from "./components/slideLeftOnScroll";
-import SlideRightOnScroll from "./components/slideRightOnScroll";
 // import ScrollAnimation from "./components/scrollAnimation";
 
 export default function Home() {
@@ -14,46 +19,64 @@ export default function Home() {
   {/* SECTION HERO */}
   <div
     className="
-      flex flex-col-reverse md:flex-row 
-      items-center md:items-start justify-center 
-      px-6 md:px-20 py-20 md:py-50 gap-0 md:gap-25
+      flex flex-col lg:flex-row
+      items-center justify-center
+      gap-12 lg:gap-16 xl:gap-24
+      px-6 md:px-12 lg:px-20 pt-32 pb-16 lg:min-h-[calc(100svh-4.5rem)] lg:pt-28 lg:pb-12
+      overflow-x-clip
     "
   >
     {/* Texte */}
-    <div className="flex flex-col max-w-xl md:pr-10 mt-10 md:mt-20 text-center md:text-left">
-      <SlideLeftOnScroll>
-        <h2 className="text-[#1800AD] text-4xl md:text-6xl mb-3 font-extrabold">
-          Chargée de communication
-        </h2>
+    <div className="flex flex-col items-center lg:items-start max-w-2xl text-center lg:text-left">
+      <p className="rise text-sm md:text-base font-semibold uppercase tracking-[0.15em] text-zinc-600 mb-4">
+        Communicante digitale freelance&nbsp;·&nbsp;Tours
+      </p>
 
-        <p className="text-black text-base md:text-lg mb-12">
-          Bientôt diplômée d’un BAC +5 Marketing digital, j’aide les entreprises
-          et les micro-entrepreneurs à gagner en visibilité sur les réseaux sociaux
-          et le web.
-        </p>
-      </SlideLeftOnScroll>
+      <h1 className="text-brand text-[1.75rem] sm:text-4xl xl:text-5xl leading-[1.12] font-extrabold mb-6">
+        <AnimatedWords text="Je fais parler des lieux culturels et des indépendants" accent="sur les réseaux." delay={0.15} />
+      </h1>
 
-      <FadeUpOnScroll>
+      <p className="rise text-black text-base md:text-lg mb-8" style={{ animationDelay: "0.65s" }}>
+        J’aide les entreprises et les micro-entrepreneurs à gagner en visibilité
+        sur les réseaux sociaux et le web.
+      </p>
+
+      {/* Preuve chiffrée */}
+      <div className="rise flex items-center gap-3 rounded-xl border border-zinc-200 bg-white px-4 py-3 shadow-sm mb-8 text-left" style={{ animationDelay: "0.8s" }}>
+        <span className="font-display text-2xl md:text-3xl font-extrabold text-accent whitespace-nowrap">
+          <CountUp target={25000} prefix="+" duration={2000} />
+        </span>
+        <span className="text-sm md:text-base text-zinc-600 leading-snug">
+          vues par mois pour la <br />
+          Scène nationale de Blois
+        </span>
+      </div>
+
+      {/* Appels à l’action */}
+      <div className="rise flex flex-wrap justify-center lg:justify-start gap-3" style={{ animationDelay: "0.95s" }}>
         <Link
-          href="/about"
-          className="bg-black border-black rounded-md text-white px-6 py-3 mx-auto md:mx-0"
+          href="/projects"
+          className="px-6 py-3 rounded-full border-2 border-brand bg-brand text-white font-semibold hover:scale-105 transition"
         >
-          Qui suis-je ?
+          Voir mes projets
         </Link>
-      </FadeUpOnScroll>
+        <Link
+          href="/#contact"
+          className="px-6 py-3 rounded-full border-2 border-brand text-brand font-semibold hover:bg-brand hover:text-white transition"
+        >
+          Me contacter
+        </Link>
+      </div>
     </div>
 
-    {/* Image */}
-    <div className="flex justify-center w-full md:w-auto flex-shrink-0">
-      <SlideRightOnScroll>
-        <img
-          src="/photosHome/LolaProfil.svg"
-          alt="Photo de Lola Gauchy"
-          className="w-full max-w-[350px] md:max-w-[400px] h-auto mt-10 md:mt-0 rounded-lg shadow-[0_0_40px_20px_#1800AD40]"
-        />
-      </SlideRightOnScroll>
+    {/* Visuel en calques : damier, portrait détouré et stickers */}
+    <div className="flex justify-center w-full lg:w-auto flex-shrink-0">
+      <HeroVisual />
     </div>
   </div>
+
+  {/* BANDEAU DÉFILANT : les services, juste sous le hero */}
+  <Marquee />
 
   {/* SCROLL ANIMATION */}
   {/* <div className="-mt-10 md:-mt-16 lg:-mt-20">
@@ -63,138 +86,52 @@ export default function Home() {
       {/* </button> */}
     {/* </FadeUpOnScroll> */}
   {/* </div> */}
-      {/* SECTION EXPERTISE */}
-      <div className="w-full bg-zinc-50 flex flex-col md:flex-row justify-center items-center gap-10 md:gap-30 py-20 px-6" id="expertise">
-
-        {/* Image */}
-        <SlideLeftOnScroll>
-          <img
-            src="/photosHome/PageAccueil.webp"
-            alt="Image de bureau"
-            className="rounded-md w-[300px] md:w-[450px] h-auto shadow-md object-cover"
-          />
-        </SlideLeftOnScroll>
-
-        {/* Texte */}
-        <div className="flex flex-col max-w-xl text-center md:text-left">
-          <SlideRightOnScroll>
-            <h3 className="mb-4 text-2xl md:text-3xl">Mon expertise</h3>
-
-            <h4 className="text-xl font-semibold">Création de contenu digital</h4>
-            <p className="mb-6">
-              Contenu visuel, montage vidéo, rédaction de newsletters, contenu
-              interactif et réseaux sociaux.
-            </p>
-
-            <h4 className="text-xl font-semibold">Création de prints</h4>
-            <p className="mb-6">
-              Cartes, flyers, brochures, affiches, supports événementiels…
-            </p>
-
-            <h4 className="text-xl font-semibold">Optimisation web</h4>
-            <p>
-              Référencement SEO, optimisation UX, content marketing.
-            </p>
-          </SlideRightOnScroll>
-        </div>
-      </div>
-
       {/* SECTION PROJETS */}
-      <div className="w-full bg-zinc-50 py-20">
-        <div className="max-w-[1200px] mx-auto px-6 md:px-20 flex flex-col gap-8">
+      <div className="w-full bg-zinc-50 py-20 md:py-24">
+        <div className="max-w-[1200px] mx-auto px-6 md:px-20 flex flex-col gap-10">
 
           <FadeUpOnScroll>
-            <h3 className="text-3xl">Mes derniers projets</h3>
+            <SectionTitle title="Mes derniers projets" sticker="smiley" />
           </FadeUpOnScroll>
 
-          <div className="flex flex-wrap gap-10 justify-center md:justify-start">
-            <CardProject
-            cardImg="/photosHome/CouvChatodo.webp"
-            cardTitle="Scène nationale X Chato'do"
-            cardDesc="Capsule vidéo sur la collaboration"
-            linkProject="/videos/video-2"
-            isVideo={true}
-/>
+          {/* Grille « bento » : projets, vidéos et chiffres clés */}
+          <ProjectBento />
 
-
-            <CardProject
-            cardImg="/photosHome/CouvDecouvertes.webp"
-            cardTitle="Découvertes Scène nationale"
-            cardDesc="Retour en images sur un projet"
-            linkProject="/videos/video-1"
-            isVideo={true}
-/>
-
-            <CardProject
-              cardImg="/photosHome/CouvTeaser.webp"
-              cardTitle="Teaser Scène nationale"
-              cardDesc="Création d’un teaser"
-              linkProject="/videos/video-4"
-              isVideo={true}
-            />
-
-            <CardProject
-              cardImg="/photosHome/CouvPoleDesArts.webp"
-              cardTitle="Présentation Pôle des Arts"
-              cardDesc="Vidéo de présentation"
-              linkProject="/videos/video-6"
-              isVideo={true}
-            />
-            
-          </div>
+          <Link
+            href="/projects"
+            className="self-center px-6 py-3 rounded-full border-2 border-brand text-brand font-semibold hover:bg-brand hover:text-white transition"
+          >
+            Voir tous les projets
+          </Link>
         </div>
       </div>
 
-      {/* SECTION AVIS */}
-      <div className="w-full bg-zinc-50 py-20">
-        <div className="max-w-[1200px] mx-auto px-6 md:px-20 flex flex-col gap-8">
+      {/* SECTION SERVICES : aplat bleu */}
+      <Services />
 
+      {/* SECTION AVIS : un avis à la fois, en grand */}
+      <div className="w-full bg-zinc-50 py-20 md:py-24">
+        <div className="max-w-[1200px] mx-auto px-6 md:px-20 flex flex-col gap-16">
           <FadeUpOnScroll>
-            <h3 className="text-3xl">Avis</h3>
+            <SectionTitle title="Avis" sticker="flower" />
           </FadeUpOnScroll>
-
-          <div className="flex flex-col md:flex-row gap-6 items-center md:items-start">
-            <FadeUpOnScroll>
-              <Avis 
-                avisText="“L’entreprise avait besoin d’un.e salarié.e de l’envergure de Lola. 
-                          Très bonne et rapide intégration dans l’équipe ! ”"
-                authorName="Sandrine Lhuillier"
-                authorTitle={
-                  <>
-                  Responsable communication/Presse <br /> Scène nationale de Blois                  </>
-                }
-                authorImg="/photosHome/SandrineLhuillier.webp"
-              />
-              </FadeUpOnScroll>
-              <FadeUpOnScroll>
-              <Avis 
-                avisText="“Lola est très professionnelle dans les missions qui lui sont confiées. 
-                Elle sait mener à bien l'ensemble de ses travaux, avec gentillesse et bienveillance. 
-                Je la recommande avec grand plaisir et suis sûr qu'elle fera un beau chemin.”"
-                authorName="Pascal Caraty"
-                authorTitle="Ancien directeur du Pôle des Arts"
-                authorImg="/photosHome/PascalCaraty.webp"
-              />
-            </FadeUpOnScroll>
-
-            <FadeUpOnScroll>
-              <Avis 
-                avisText="“J'ai reçu Lola comme stagiaire, chargée de webmarketing, pour l'une de mes activités. Je fus réellement ravie de l'avoir accueillie au sein de mon entreprise ! 
-                Elle est impliquée, a soif d'apprendre, a une sensibilité créative, est à l'écoute, est force de propositions et professionnelle. 
-                Bref, Lola est une perle et je la recommande chaudement !”"
-                authorName="Marika Pech"
-                authorTitle="Coach de vie intuitive"
-                authorImg="/photosHome/MarikaPech.webp"
-              />
-            </FadeUpOnScroll>
-          </div>
+          <Temoignages />
         </div>
       </div>
 
-      {/* SECTION CONTACT */}
-      <div className="bg-zinc-50 py-20 w-full px-6 md:px-20 flex flex-col items-center gap-6">
-        <h3 className="text-3xl">On entre en contact ?</h3>
-        <ContactForm />
+      {/* SECTION CONTACT : le damier de Lola en fond */}
+      <div
+        id="contact"
+        className="w-full scroll-mt-20 bg-brand bg-cover bg-center px-6 py-20 md:px-20"
+        style={{ backgroundImage: "url('/stickers/damier.svg')" }}
+      >
+        <div className="relative mx-auto flex w-full max-w-md flex-col items-center gap-6">
+          <Sticker name="smiley" className="absolute -right-3 -top-10 w-16 rotate-12 md:-right-12 md:w-20" />
+          <h2 className="rounded-full bg-white px-6 py-3 text-xl font-bold text-brand shadow-lg sm:text-2xl md:text-3xl">
+            On entre en contact&nbsp;?
+          </h2>
+          <ContactForm />
+        </div>
       </div>
 
     </div>

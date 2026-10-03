@@ -14,8 +14,13 @@ export default function ScrollAnimation() {
   }
 };
   return (
-    <div className="w-26 h-26 md:w-16 md:h-16 lg:w-36 lg:h-36 mx-auto opacity-80">
+    <button
+      type="button"
+      onClick={scrollToExpertise}
+      aria-label="Défiler jusqu'à la section expertise"
+      className="block w-26 h-26 md:w-16 md:h-16 lg:w-36 lg:h-36 mx-auto opacity-80 cursor-pointer"
+    >
       <Lottie animationData={scrollAnimation} loop />
-    </div>
+    </button>
   );
 }

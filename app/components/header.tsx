@@ -36,28 +36,26 @@ export default function Header() {
         isProjectsListPage
           ? heroVisible
             ? "bg-transparent"
-            : "bg-[#1800AD] backdrop-blur-md shadow-lg"
-          : "bg-[#1800AD]"
+            : "bg-brand backdrop-blur-md shadow-lg"
+          : "bg-brand"
       }`}
     >
       <div className="flex items-center justify-between px-8 py-6">
 
-        {/* LOGO */}
-        <h1 className="text-4xl md:text-5xl font-extrabold font-[urbanist] text-white [text-shadow:2px_2px_8px_rgba(0,0,0,0.4)]">
-          <a href="/">
+        {/* LOGO : pas un titre, le titre principal de chaque page est son propre h1 */}
+        <p className="font-display text-2xl md:text-3xl font-extrabold text-white">
+          <Link href="/" onClick={() => setOpen(false)}>
           Lola Gauchy
-          </a>
-        </h1>
+          </Link>
+        </p>
 
         {/* DESKTOP MENU */}
         <nav className="hidden md:flex items-center gap-8 text-lg font-medium text-white mr-8 *:transition-transform *:duration-300 *:hover:scale-110">
           <Link href="/">Accueil</Link>
           <Link href="/about">À propos</Link>
           <Link href="/projects">Projets</Link>
-          <Link href="/#contact">
-            <button className="px-4 py-2 border-2 bg-black border-black text-white rounded-md hover:scale-110 transition">
-              Contact
-            </button>
+          <Link href="/#contact" className="px-4 py-2 rounded-full bg-white text-brand font-semibold">
+            Contact
           </Link>
         </nav>
 
@@ -73,7 +71,7 @@ export default function Header() {
 
       {/* MOBILE MENU */}
       <div
-        className={`md:hidden absolute top-full left-0 w-full bg-[#1800AD] text-white overflow-hidden transition-all duration-300 ${
+        className={`md:hidden absolute top-full left-0 w-full bg-brand text-white overflow-hidden transition-all duration-300 ${
           open ? "max-h-96 py-6" : "max-h-0 py-0"
         }`}
       >
@@ -81,10 +79,12 @@ export default function Header() {
           <Link onClick={() => setOpen(false)} href="/">Accueil</Link>
           <Link onClick={() => setOpen(false)} href="/about">À propos</Link>
           <Link onClick={() => setOpen(false)} href="/projects">Projets</Link>
-          <Link onClick={() => setOpen(false)} href="/#contact">
-            <button className="px-4 py-2 border-2 bg-black border-black text-white rounded-md hover:scale-105 transition">
-              Contact
-            </button>
+          <Link
+            onClick={() => setOpen(false)}
+            href="/#contact"
+            className="px-4 py-2 rounded-full bg-white text-brand font-semibold hover:scale-105 transition"
+          >
+            Contact
           </Link>
         </nav>
       </div>

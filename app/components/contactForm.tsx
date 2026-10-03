@@ -1,7 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import emailjs from "@emailjs/browser";
+import { contact } from "../data/contact";
+
+const champ =
+  "w-full rounded-lg border border-zinc-300 px-4 py-2.5 text-base focus:outline-none focus:ring-2 focus:ring-brand";
+const libelle = "text-sm font-semibold text-zinc-800";
+const lien = "font-semibold text-brand underline decoration-accent decoration-2 underline-offset-4";
 
 export default function ContactForm() {
   const [form, setForm] = useState({
@@ -40,79 +47,91 @@ export default function ContactForm() {
   };
 
   return (
-    <div className="w-full bg-zinc-50 py-20 flex justify-center" id="contact">
-      <div className="w-full max-w-[1200px] px-6 sm:px-12 md:px-20">
+    <div
+      className={`mx-auto w-full max-w-md rounded-2xl bg-white p-6 shadow-xl sm:p-8 ${
+        status === "error" ? "animate-shake" : ""
+      } ${status === "success" ? "animate-pop" : ""}`}
+    >
+      <p className="text-center text-zinc-700">
+        Un projet, une question&nbsp;? Je vous réponds sous {contact.delaiReponse}.
+      </p>
 
-        <form
-          onSubmit={handleSubmit}
-          className={`
-            flex flex-col gap-4 
-            w-full max-w-md 
-            mx-auto 
-            p-6 sm:p-8 
-            bg-white 
-            shadow-md 
-            rounded-md
-            ${status === "error" ? "animate-shake" : ""}
-            ${status === "success" ? "animate-pop" : ""}
-          `}
+      {/* Libellés visibles au-dessus des champs : ils restent lisibles pendant la saisie */}
+      <form onSubmit={handleSubmit} className="mt-6 flex flex-col gap-4">
+        <div className="flex flex-col gap-1.5">
+          <label htmlFor="contact-nom" className={libelle}>Nom</label>
+          <input
+            id="contact-nom"
+            type="text"
+            name="name"
+            autoComplete="name"
+            value={form.name}
+            onChange={handleChange}
+            required
+            className={champ}
+          />
+        </div>
+
+        <div className="flex flex-col gap-1.5">
+          <label htmlFor="contact-email" className={libelle}>E-mail</label>
+          <input
+            id="contact-email"
+            type="email"
+            name="email"
+            autoComplete="email"
+            placeholder="vous@exemple.fr"
+            value={form.email}
+            onChange={handleChange}
+            required
+            className={champ}
+          />
+        </div>
+
+        <div className="flex flex-col gap-1.5">
+          <label htmlFor="contact-message" className={libelle}>Message</label>
+          <textarea
+            id="contact-message"
+            name="message"
+            placeholder="Parlez-moi de votre projet…"
+            value={form.message}
+            onChange={handleChange}
+            required
+            className={`${champ} h-32`}
+          />
+        </div>
+
+        <button
+          type="submit"
+          disabled={status === "sending"}
+          className={`rounded-full bg-brand px-6 py-3 font-semibold text-white transition-transform duration-200 hover:scale-105 ${
+            status === "sending" ? "cursor-not-allowed opacity-50" : ""
+          }`}
         >
-         <input
-  type="text"
-  name="name"
-  placeholder="Votre nom"
-  aria-label="Votre nom"
-  value={form.name}
-  onChange={handleChange}
-  required
-  className="border border-zinc-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#1800AD]"
-/>
+          {status === "sending" ? "Envoi..." : "Envoyer"}
+        </button>
 
-<input
-  type="email"
-  name="email"
-  placeholder="Votre email"
-  aria-label="Votre email"
-  value={form.email}
-  onChange={handleChange}
-  required
-  className="border border-zinc-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#1800AD]"
-/>
+        <p role="status" aria-live="polite" className="text-center text-sm empty:hidden">
+          {status === "success" && <span className="text-green-700">Merci ! Votre message a été envoyé.</span>}
+          {status === "error" && <span className="text-red-700">Erreur lors de l’envoi, veuillez réessayer.</span>}
+        </p>
+      </form>
 
-<textarea
-  name="message"
-  placeholder="Votre message"
-  aria-label="Votre message"
-  value={form.message}
-  onChange={handleChange}
-  required
-  className="border border-zinc-300 rounded-md px-4 py-2 h-32 focus:outline-none focus:ring-2 focus:ring-[#1800AD]"
-/>
+      {/* Données personnelles : une mention courte, le détail est dans les mentions légales */}
+      <p className="mt-4 text-xs leading-relaxed text-zinc-500">
+        Vos informations servent uniquement à vous répondre.{" "}
+        <Link href="/mentions-legales#donnees" className="underline underline-offset-2 hover:text-brand">
+          En savoir plus
+        </Link>
+      </p>
 
-          <button
-            type="submit"
-            disabled={status === "sending"}
-            className={`bg-[#1800AD] text-white px-6 py-3 rounded-md transition-transform duration-200 hover:scale-105 ${
-              status === "sending" ? "opacity-50 cursor-not-allowed" : ""
-            }`}
-          >
-            {status === "sending" ? "Envoi..." : "Envoyer"}
-          </button>
-
-          {status === "success" && (
-            <p className="text-green-600 mt-2 text-center">
-              Merci ! Votre message a été envoyé.
-            </p>
-          )}
-
-          {status === "error" && (
-            <p className="text-red-600 mt-2 text-center">
-              Erreur lors de l’envoi, veuillez réessayer.
-            </p>
-          )}
-        </form>
-
-      </div>
+      {/* Les autres moyens de contact */}
+      <p className="mt-6 border-t border-zinc-100 pt-5 text-center text-sm leading-relaxed text-zinc-700">
+        Vous préférez écrire directement&nbsp;?
+        <br />
+        <a href={`mailto:${contact.email}`} className={lien}>{contact.email}</a>
+        {" · "}
+        <a href={contact.linkedin} target="_blank" rel="noopener noreferrer" className={lien}>LinkedIn</a>
+      </p>
     </div>
   );
 }

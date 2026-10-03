@@ -1,7 +1,9 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import { Plus } from "lucide-react";
 import faqData from "../data/faq.json";
+import SectionTitle from "./sectionTitle";
 
 export default function Faq() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -21,53 +23,53 @@ export default function Faq() {
   }, [openIndex]);
 
   return (
-    <section
-      id="faq"
-      className="w-full max-w-[900px] mx-auto px-6 py-10 text-black"
-    >
-      {/* Titre */}
-      <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-12 text-[#1800AD]">
-        {faqData.title}
-      </h2>
+    <section id="faq" className="w-full text-black">
+      <SectionTitle title={faqData.title} sticker="smiley" />
 
-      <div className="flex flex-col gap-4">
-        {faqData.items.map((item, index) => (
-          <div
-            key={index}
-            className={`rounded-xl border border-zinc-200 bg-zinc-50 overflow-hidden transition-all ${
-              openIndex === index ? "ring-1 ring-[#1800AD]/30" : ""
-            }`}
-          >
-            {/* Question */}
-            <button
-              onClick={() => toggle(index)}
-              className="w-full flex justify-between items-center text-left px-6 py-5 font-semibold text-base md:text-lg text-zinc-900
-                         hover:bg-[#1800AD] hover:text-white transition-colors"
-            >
-              {item.question}
+      <div className="mt-10 flex max-w-[900px] flex-col gap-4">
+        {faqData.items.map((item, index) => {
+          const isOpen = openIndex === index;
 
-              <span
-                className={`transition-transform duration-300 ${
-                  openIndex === index ? "rotate-180" : ""
-                }`}
-              >
-                ▼
-              </span>
-            </button>
-
-            {/* Réponse */}
+          return (
             <div
-             ref={(el) => { answerRefs.current[index] = el; }}
-              className="max-h-0 overflow-hidden transition-[max-height] duration-300 ease-in-out"
+              key={index}
+              className={`overflow-hidden rounded-2xl border bg-white transition-shadow ${
+                isOpen ? "border-accent shadow-lg" : "border-zinc-200 shadow-sm"
+              }`}
             >
-              <p className="px-6 pb-6 pt-2 text-sm md:text-base text-zinc-600 leading-relaxed">
-                {item.answer}
-              </p>
+              {/* Question */}
+              <button
+                type="button"
+                onClick={() => toggle(index)}
+                aria-expanded={isOpen}
+                aria-controls={`faq-reponse-${index}`}
+                className="group flex w-full items-center justify-between gap-4 px-6 py-5 text-left text-base font-semibold text-zinc-900 transition-colors hover:text-brand md:text-lg"
+              >
+                {/* Espace insécable avant « ? » : le signe ne part jamais seul à la ligne */}
+                {item.question.replace(/ ([?!:;])/g, " $1")}
+                <span
+                  className={`flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full transition duration-300 ${
+                    isOpen ? "rotate-45 bg-accent text-white" : "bg-brand/10 text-brand group-hover:bg-brand group-hover:text-white"
+                  }`}
+                >
+                  <Plus className="h-5 w-5" aria-hidden="true" />
+                </span>
+              </button>
+
+              {/* Réponse */}
+              <div
+                id={`faq-reponse-${index}`}
+                ref={(el) => { answerRefs.current[index] = el; }}
+                className="max-h-0 overflow-hidden transition-[max-height] duration-300 ease-in-out"
+              >
+                <p className="px-6 pb-6 text-sm leading-relaxed text-zinc-600 md:text-base">
+                  {item.answer}
+                </p>
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </section>
   );
 }
-

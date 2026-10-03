@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Urbanist } from "next/font/google";
+import { Unbounded, Urbanist } from "next/font/google";
 import "./globals.css";
 import Header from "./components/header";
 import Footer from "./components/footer";
@@ -7,15 +7,12 @@ import Footer from "./components/footer";
 const urbanist = Urbanist({
   variable: "--font-urbanist",
   subsets: ["latin"],
-  weight: ["400","600", "700"],
-});
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+// Police des titres (variable : toutes les graisses dans un seul fichier)
+const unbounded = Unbounded({
+  variable: "--font-unbounded",
   subsets: ["latin"],
 });
 
@@ -45,14 +42,13 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "fr_FR",
-    url: "https://votre-domaine.fr", // à remplacer
     siteName: "Lola Gauchy",
     title: "Lola Gauchy — Communicante digitale freelance",
     description:
       "Création de contenu, stratégie réseaux sociaux, webdéveloppement et print. Basée à Tours, disponible en freelance.",
     images: [
       {
-        url: "/og-image.jpg", // image 1200x630px à mettre dans /public
+        url: "/og-image.jpg", // image 1200x630px dans /public
         width: 1200,
         height: 630,
         alt: "Lola Gauchy — Communicante digitale freelance",
@@ -82,11 +78,10 @@ export const metadata: Metadata = {
   // Favicon
   icons: {
     icon: "/favicon.ico",
-    apple: "/apple-touch-icon.png", // optionnel, pour iOS
   },
 
-  // URL canonique
-  metadataBase: new URL("https://votre-domaine.fr"), // à remplacer
+  // URL du site : sert à générer les liens absolus (aperçus de partage, og-image...)
+  metadataBase: new URL("https://lolagauchy.fr"),
 };
 
 export default function RootLayout({
@@ -95,13 +90,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+    <html lang="fr" className={`${urbanist.variable} ${unbounded.variable}`}>
+
+      <body className="antialiased">
+        {/* Lien d'évitement : visible seulement au clavier, il mène directement au contenu */}
+        <a
+          href="#contenu"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-white focus:px-4 focus:py-2 focus:font-semibold focus:text-brand focus:shadow-lg"
+        >
+          Aller au contenu
+        </a>
         <Header />        
-        {children}
+        <main id="contenu">{children}</main>
         <Footer />
       </body>
     </html>
