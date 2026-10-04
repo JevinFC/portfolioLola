@@ -25,7 +25,9 @@ export const cgv: Record<
     "Le suivi mensuel des réseaux sociaux est sans durée minimum d’engagement : le client peut y mettre fin à tout moment, avec un préavis de 15 jours.",
   // CGV 8 : cession complète après paiement, crédit « Lola Gauchy », sources en supplément, portfolio avec accord
   droits:
-    "Une fois la facture entièrement payée, le client peut utiliser librement les créations livrées : Lola Gauchy lui cède les droits de reproduction, de représentation et d’adaptation, sur tous les supports, pour le monde entier et pour toute la durée légale des droits d’auteur. Le client mentionne le crédit « Lola Gauchy » lorsqu’il utilise ces créations.\n" +
+    "Une fois la facture entièrement payée, le client peut utiliser librement les créations livrées : Lola Gauchy lui cède les droits de reproduction, de représentation et d’adaptation, sur tous les supports, pour le monde entier et pour toute la durée légale des droits d’auteur.\n" +
+    // Crédit adapté à chaque support, validé par Lola : jamais exigé quand c'est techniquement impossible
+    "Sauf accord contraire, le client crédite Lola Gauchy lorsque le support le permet : une mention ou un tag (@lolafetacom) sur les réseaux sociaux, « Création : Lola Gauchy » sur les supports imprimés, une mention dans la description ou le générique d’une vidéo, un lien vers lolagauchy.fr sur un site internet. Ce crédit n’est pas demandé quand il est techniquement impossible (petit format, espace insuffisant).\n" +
     "Les fichiers sources (InDesign, Premiere Pro, Canva…) ne sont pas inclus : ils peuvent être fournis sur demande, moyennant un supplément. Lola Gauchy ne présente une réalisation dans son portfolio qu’avec l’accord du client.",
 };
 
