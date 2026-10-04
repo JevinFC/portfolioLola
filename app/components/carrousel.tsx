@@ -80,7 +80,7 @@ export default function Carousel({ images }: CarouselProps) {
                 {video ? (
                   <Link href={`/videos/${item.videoSlug}`} className="block w-full h-full relative group">
                     {item.thumbnail ? (
-                      <img src={item.thumbnail} alt={item.alt ?? ""} className={`w-full h-full ${fitClass}`} />
+                      <img src={item.thumbnail} alt={item.alt ?? ""} loading="lazy" className={`w-full h-full ${fitClass}`} />
                     ) : (
                       <video src={item.src} className={`w-full h-full ${fitClass}`} muted playsInline />
                     )}
@@ -99,6 +99,7 @@ export default function Carousel({ images }: CarouselProps) {
                   <img
                     src={item.src}
                     alt={item.alt ?? ""}
+                    loading="lazy"
                     className={`w-full h-full ${fitClass}`}
                   />
                 )}
@@ -151,7 +152,7 @@ export default function Carousel({ images }: CarouselProps) {
               {isVideo(item.src) ? (
                 <>
                   {item.thumbnail ? (
-                    <img src={item.thumbnail} alt="" className="w-full h-full object-cover" />
+                    <img src={item.thumbnail} alt="" loading="lazy" className="w-full h-full object-cover" />
                   ) : (
                     <video src={item.src} className="w-full h-full object-cover" muted playsInline />
                   )}
@@ -160,7 +161,7 @@ export default function Carousel({ images }: CarouselProps) {
                   </div>
                 </>
               ) : (
-                <img src={item.src} alt="" className="w-full h-full object-cover" />
+                <img src={item.src} alt="" loading="lazy" className="w-full h-full object-cover" />
               )}
             </button>
           ))}

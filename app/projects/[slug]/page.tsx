@@ -165,7 +165,7 @@ export default async function IndivProject({ params }: { params: Promise<{ slug:
 
           {/* Sur grand écran, les visuels occupent toute la hauteur de la colonne de texte, de l'intitulé au bouton */}
           <div className="pop-in relative w-full max-w-2xl lg:w-[460px] lg:max-w-none lg:flex-shrink-0" style={{ animationDelay: "0.25s" }}>
-            <ProjectCover items={project.cover} pleineHauteur className="lg:absolute lg:inset-0" />
+            <ProjectCover items={project.cover} pleineHauteur prioritaire className="lg:absolute lg:inset-0" />
           </div>
         </div>
       </section>

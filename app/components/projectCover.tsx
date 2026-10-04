@@ -1,3 +1,4 @@
+import type { ImgHTMLAttributes } from "react";
 import { ImagePlus } from "lucide-react";
 import type { CoverItem } from "../data/projects";
 
@@ -5,13 +6,19 @@ interface ProjectCoverProps {
   items: CoverItem[];
   className?: string;
   pleineHauteur?: boolean; // ← dès le grand écran, la mosaïque prend la hauteur que lui donne son parent (en-tête d'étude de cas)
+  prioritaire?: boolean; // ← mosaïque visible dès l'arrivée sur la page : images chargées tout de suite, la principale en priorité
 }
+
+type Chargement = Pick<ImgHTMLAttributes<HTMLImageElement>, "loading" | "fetchPriority">;
 
 // Mosaïque des visuels réalisés pour un projet : le premier en grand, les deux suivants empilés à droite.
 // En pleine hauteur, elle devient verticale : le premier en haut sur toute la largeur, les deux suivants côte à côte en dessous
-export default function ProjectCover({ items, className = "", pleineHauteur = false }: ProjectCoverProps) {
+export default function ProjectCover({ items, className = "", pleineHauteur = false, prioritaire = false }: ProjectCoverProps) {
   const [main, ...others] = items;
   const side = others.slice(0, 2);
+  // Sous la ligne de flottaison, les images attendent d'approcher de l'écran ; sinon elles partent tout de suite
+  const chargementPrincipal: Chargement = prioritaire ? { loading: "eager", fetchPriority: "high" } : { loading: "lazy" };
+  const chargementCotes: Chargement = { loading: prioritaire ? "eager" : "lazy" };
   const coins = pleineHauteur ? "lg:rounded-xl" : "";
   const rangeeEntiere = pleineHauteur ? "lg:col-span-2 lg:row-span-1" : "";
   const vertical = pleineHauteur
@@ -24,15 +31,26 @@ export default function ProjectCover({ items, className = "", pleineHauteur = fa
         side.length > 0 ? "grid-cols-[minmax(0,3fr)_minmax(0,2fr)] grid-rows-2" : "grid-cols-1"
       } ${vertical} ${className}`}
     >
-      {main && <CoverCell item={main} className={`${coins} ${side.length > 0 ? `row-span-2 ${rangeeEntiere}` : ""}`} />}
+      {main && (
+        <CoverCell
+          item={main}
+          chargement={chargementPrincipal}
+          className={`${coins} ${side.length > 0 ? `row-span-2 ${rangeeEntiere}` : ""}`}
+        />
+      )}
       {side.map((item, i) => (
-        <CoverCell key={i} item={item} className={`${coins} ${side.length === 1 ? `row-span-2 ${rangeeEntiere}` : ""}`} />
+        <CoverCell
+          key={i}
+          item={item}
+          chargement={chargementCotes}
+          className={`${coins} ${side.length === 1 ? `row-span-2 ${rangeeEntiere}` : ""}`}
+        />
       ))}
     </div>
   );
 }
 
-function CoverCell({ item, className = "" }: { item: CoverItem; className?: string }) {
+function CoverCell({ item, chargement, className = "" }: { item: CoverItem; chargement: Chargement; className?: string }) {
   // Capture d'un site : affichée dans un cadre de navigateur, avec l'adresse du site
   if (item.src && item.url) {
     return (
@@ -46,7 +64,7 @@ function CoverCell({ item, className = "" }: { item: CoverItem; className?: stri
         <img
           src={item.src}
           alt={item.alt ?? ""}
-          loading="lazy"
+          {...chargement}
           className="min-h-0 w-full flex-1 object-cover"
           style={{ objectPosition: item.position ?? "top" }}
         />
@@ -76,8 +94,8 @@ function CoverCell({ item, className = "" }: { item: CoverItem; className?: stri
   if (item.fit === "contain") {
     return (
       <div className={`relative overflow-hidden rounded-lg bg-zinc-200 shadow-md ${className}`}>
-        <img src={item.src} alt="" aria-hidden="true" loading="lazy" className="absolute inset-0 h-full w-full scale-110 object-cover blur-xl" />
-        <img src={item.src} alt={item.alt ?? ""} loading="lazy" className="relative h-full w-full object-contain" />
+        <img src={item.src} alt="" aria-hidden="true" loading={chargement.loading} className="absolute inset-0 h-full w-full scale-110 object-cover blur-xl" />
+        <img src={item.src} alt={item.alt ?? ""} {...chargement} className="relative h-full w-full object-contain" />
       </div>
     );
   }
@@ -87,7 +105,7 @@ function CoverCell({ item, className = "" }: { item: CoverItem; className?: stri
       <img
         src={item.src}
         alt={item.alt ?? ""}
-        loading="lazy"
+        {...chargement}
         className="h-full w-full object-cover"
         style={item.position ? { objectPosition: item.position } : undefined}
       />

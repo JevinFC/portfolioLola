@@ -50,9 +50,11 @@ export default function HeroVisual({ variant = "bleu" }: HeroVisualProps) {
             rose ? "shadow-[0_0_40px_20px_#E9638E40]" : "shadow-[0_0_40px_20px_#1800AD40]"
           }`}
         >
+          {/* Le damier est l'image principale de la page (LCP) : chargé en priorité */}
           <img
             src={rose ? "/stickers/damier-rose.svg" : "/stickers/damier.svg"}
             alt=""
+            fetchPriority="high"
             className="absolute inset-0 h-full w-full object-cover"
           />
           <img

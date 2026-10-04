@@ -46,101 +46,16 @@ html{
     @apply text-lg font-semibold;
   }
 }
-/* Animations pour le hero */
-@keyframes slideInLeft {
-  0% {
-    opacity: 0;
-    transform: translateX(-50px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-@keyframes slideInRight {
-  0% {
-    opacity: 0;
-    transform: translateX(50px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}@keyframes slideInBottom {
-  0% {
-    opacity: 0;
-    transform: translateY(50px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-/* Shake animation pour l'erreur */
+/* Formulaire de contact : secousse en cas d'erreur, petit rebond en cas de succès */
 @keyframes shake {
   0%, 100% { transform: translateX(0); }
   20%, 60% { transform: translateX(-5px); }
   40%, 80% { transform: translateX(5px); }
 }
-
-
-
-/* Pop animation pour le succès */
 @keyframes pop {
   0% { transform: scale(0.8); opacity: 0; }
   50% { transform: scale(1.05); opacity: 1; }
   100% { transform: scale(1); opacity: 1; }
-}
-
-
-
-
-
-
-/* Classes utilitaires pour les animations */
-.animate-slide-left {
-  animation: slideInLeft 1s ease-out forwards;
-}
-.animate-slide-right {
-  animation: slideInRight 1s ease-out forwards;
-}
-
-.animate-fade {
-  animation: fadeIn 1s ease-out forwards;
-}
-
-.animate-delay-200 {
-  animation-delay: 0.2s;
-}
-
-.animate-delay-400 {
-  animation-delay: 0.4s;
-}
-
-.animate-delay-600 {
-  animation-delay: 0.6s;
-}
-.fade-up {
-  opacity: 0;
-  animation: fadeUp 0.8s ease-out forwards;
 }
 .animate-shake {
   animation: shake 0.5s ease-in-out;
@@ -206,18 +121,16 @@ html{
   animation: wordIn 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
 
-/* Carte du hero : arrivée avec un léger rebond */
+/* Carte du hero : arrivée avec un léger rebond. Pas de fondu : visible dès le premier affichage,
+   l'image principale de la page (LCP) n'attend pas la fin de l'animation */
 @keyframes popIn {
   0% {
-    opacity: 0;
     transform: scale(0.92) rotate(-2deg);
   }
   60% {
-    opacity: 1;
     transform: scale(1.02) rotate(0.5deg);
   }
   100% {
-    opacity: 1;
     transform: none;
   }
 }
@@ -306,15 +219,8 @@ html{
   .wiggle-hover:hover {
     animation: none;
   }
-  .animate-slide-left,
-  .animate-slide-right,
-  .animate-fade,
-  .fade-up,
   .animate-shake,
   .animate-pop {
     animation: none;
-  }
-  .fade-up {
-    opacity: 1;
   }
 }

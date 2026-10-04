@@ -74,7 +74,7 @@ export default function Projects() {
                   aria-hidden="true"
                   className="block transition duration-300 hover:-translate-y-1"
                 >
-                  <ProjectCover items={project.cover} />
+                  <ProjectCover items={project.cover} prioritaire={i === 0} />
                 </Link>
               </FadeUpOnScroll>
 
