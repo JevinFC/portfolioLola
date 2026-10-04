@@ -14,9 +14,18 @@ export const metadata = {
 
 const lien = "font-semibold text-brand underline decoration-accent decoration-2 underline-offset-4";
 
-// Une règle propre à Lola (data/cgv.ts) : sa phrase, ou un emplacement « À compléter » tant qu'elle manque
+// Une règle propre à Lola (data/cgv.ts) : ses paragraphes, ou un emplacement « À compléter » tant qu'elle manque
 function Regle({ texte, question, children }: { texte?: string; question: string; children: ReactNode }) {
-  return texte ? <p>{texte}</p> : <ACompleter question={question}>{children}</ACompleter>;
+  if (!texte) return <ACompleter question={question}>{children}</ACompleter>;
+  // Espace insécable avant « : », « % »… et après « : la ponctuation ne part jamais seule à la ligne
+  const typo = (s: string) => s.replace(/ ([:;?!%»])/g, " $1").replace(/« /g, "« ");
+  return (
+    <>
+      {texte.split("\n").map((paragraphe) => (
+        <p key={paragraphe}>{typo(paragraphe)}</p>
+      ))}
+    </>
+  );
 }
 
 export default function Cgv() {
@@ -83,7 +92,7 @@ export default function Cgv() {
               Le délai de paiement des factures (à réception, sous 30 jours…) et les moyens acceptés (virement…).
             </Regle>
             <p>
-              Pour les clients professionnels, tout retard de paiement entraîne de plein droit des pénalités au taux
+              Tout retard de paiement entraîne de plein droit des pénalités au taux
               appliqué par la Banque centrale européenne à son opération de refinancement la plus récente, majoré de
               10 points, ainsi qu’une indemnité forfaitaire de 40&nbsp;€ pour frais de recouvrement (articles L441-10 et
               D441-5 du Code de commerce).
