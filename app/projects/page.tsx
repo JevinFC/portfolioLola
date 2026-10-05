@@ -5,12 +5,16 @@ import ProjectCover from "../components/projectCover";
 import SectionTitle from "../components/sectionTitle";
 import CountUp from "../components/countUp";
 import { projects } from "../data/projects";
+import JsonLd from "../components/jsonLd";
+import { metadonnees } from "../lib/seo";
+import { filAriane } from "../lib/schema";
 
-export const metadata = {
-  title: "Projets",
+export const metadata = metadonnees({
+  titre: "Projets : réseaux sociaux, vidéo et print",
   description:
-    "Projets de Lola Gauchy : réseaux sociaux, vidéos, print et sites web pour la Halle aux grains, le Pôle des arts Paul Gaudet et Les Chambres en Wrac'h.",
-};
+    "Études de cas : réseaux sociaux, vidéos, print et sites web pour la Halle aux grains, le Pôle des arts Paul Gaudet et Les Chambres en Wrac'h.",
+  chemin: "/projects",
+});
 
 // Projets fictifs réalisés en formation (sans étude de cas détaillée)
 const autresProjets = [
@@ -38,6 +42,7 @@ const autresProjets = [
 export default function Projects() {
   return (
     <div className="w-full bg-zinc-50 font-[urbanist] text-black">
+      <JsonLd data={filAriane([{ nom: "Accueil", chemin: "/" }, { nom: "Projets", chemin: "/projects" }])} />
 
       {/* EN-TÊTE : la bannière de Lola et une phrase d'intro (le menu reste transparent tant qu'elle est visible) */}
       <section

@@ -11,11 +11,25 @@ import Temoignages from "./components/temoignages";
 import SectionTitle from "./components/sectionTitle";
 import FadeUpOnScroll from "./components/fadeUpOnScroll";
 import ContactForm from "./components/contactForm";
+import JsonLd from "./components/jsonLd";
+import { metadonnees } from "./lib/seo";
+import { grapheAccueil } from "./lib/schema";
 // import ScrollAnimation from "./components/scrollAnimation";
+
+export const metadata = metadonnees({
+  titre: "Lola Gauchy · Communicante digitale freelance à Tours",
+  titreComplet: true,
+  description:
+    "Communicante digitale et community manager freelance à Tours : stratégie, réseaux sociaux et vidéos tournées sur place, pour que le public vienne.",
+  chemin: "/",
+});
 
 export default function Home() {
   return (
 <div className="flex flex-col text-black font-[urbanist] bg-zinc-50">
+
+  {/* Données structurées : le site, Lola et son activité (tarifs compris) */}
+  <JsonLd data={grapheAccueil} />
 
   {/* SECTION HERO */}
   <div
@@ -29,11 +43,11 @@ export default function Home() {
   >
     {/* Texte */}
     <div className="flex flex-col items-center lg:items-start max-w-2xl text-center lg:text-left">
-      <p className="rise text-sm md:text-base font-semibold uppercase tracking-[0.15em] text-zinc-600 mb-4">
-        Communicante digitale freelance&nbsp;·&nbsp;Tours
-      </p>
-
+      {/* Le métier et la ville font partie du titre principal (h1), lu par Google en priorité */}
       <h1 className="text-brand text-[1.75rem] sm:text-4xl xl:text-5xl leading-[1.12] font-extrabold mb-6">
+        <span className="rise block font-sans text-sm md:text-base font-semibold uppercase tracking-[0.15em] text-zinc-600 mb-4">
+          Communicante digitale freelance&nbsp;·&nbsp;Tours
+        </span>
         <AnimatedWords text="Je fais parler de vous sur les réseaux," accent="pour que le public vienne." delay={0.15} />
       </h1>
 

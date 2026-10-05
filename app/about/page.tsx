@@ -24,15 +24,22 @@ import BandeauContact from "../components/bandeauContact";
 import AnimatedWords from "../components/animatedWords";
 import FadeUpOnScroll from "../components/fadeUpOnScroll";
 import { projects } from "../data/projects";
+import faqData from "../data/faq.json";
+import JsonLd from "../components/jsonLd";
+import { metadonnees } from "../lib/seo";
+import { pageFaq, pageProfil } from "../lib/schema";
 
 // Expériences dans l'ordre chronologique (les projets sont rangés du plus récent au plus ancien)
 const experiences = [...projects].reverse();
 
-export const metadata = {
-  title: "À propos",
+export const metadata = metadonnees({
+  titre: "À propos de Lola Gauchy, communicante digitale à Tours",
+  titreComplet: true,
   description:
-    "Lola Gauchy, communicante digitale à Tours : parcours, formations en marketing digital et compétences en création de contenu, réseaux sociaux et stratégie.",
-};
+    "Lola Gauchy, communicante digitale à Tours : cinq ans d’expérience, un master en marketing digital, des compétences en réseaux sociaux, vidéo et stratégie.",
+  chemin: "/about",
+  type: "profile",
+});
 
 // Repères affichés sous l'introduction
 const reperes = [
@@ -85,6 +92,10 @@ const competences = [
 export default function About() {
   return (
     <div className="flex flex-col text-black font-[urbanist] bg-zinc-50">
+
+      {/* Données structurées : la page de profil de Lola et la foire aux questions */}
+      <JsonLd data={pageProfil} />
+      <JsonLd data={pageFaq(faqData.items)} />
 
       {/* HERO : texte + visuel en calques (version rose) */}
       <section className="flex flex-col lg:flex-row-reverse items-center justify-center gap-14 lg:gap-20 xl:gap-24 px-6 md:px-12 lg:px-20 pt-32 pb-20 lg:pt-36 lg:pb-24 overflow-x-clip">

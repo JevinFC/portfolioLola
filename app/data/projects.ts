@@ -65,6 +65,8 @@ export type CoverItem = {
 export type Project = {
   slug: string;
   title: string;
+  // Résultat Google : titre (≈ 45 caractères, complété par « | Lola Gauchy ») et description (≈ 150 caractères)
+  seo: { titre: string; description: string };
   description: string;
   siteUrl: string;
   accroche?: string; // ← une phrase d'accroche, affichée sur la page Projets
@@ -95,6 +97,11 @@ export const projects: Project[] = [
   {
     slug: "halle-aux-grains",
     title: "Halle aux grains\nScène nationale de Blois",
+    seo: {
+      titre: "Halle aux grains, Scène nationale de Blois",
+      description:
+        "Étude de cas : les réseaux sociaux de la Halle aux grains, Scène nationale de Blois. Capsules vidéo, print et +1 800 abonnés en 18 mois.",
+    },
     description:
       "La Halle aux grains - Scène nationale de Blois est un espace dédié au spectacle vivant qui offre une programmation artistique pluridisciplinaire et qui s'adresse à des publics variés.\n\nMon rôle : concevoir, produire et coordonner les contenus de communication, en lien avec l'identité et les missions d'une scène nationale.",
     siteUrl: "https://www.halleauxgrains.com/site/",
@@ -107,9 +114,9 @@ export const projects: Project[] = [
     ],
     imagesCarrousel: [
   { src: "/photosProjectSlugs/photosHAG/BrochureHAG.webp", fit:"cover", alt: "Brochures de saison de la Halle aux grains" },
-  { src: "https://res.cloudinary.com/dkwxhd6ck/video/upload/v1781640759/RecapGenerationClimat_xy0jya.mp4", videoSlug: "video-3", fit:"contain", thumbnail:"/photosProjectSlugs/photosHAG/thumbnailGeneClimat.webp", alt: "Vidéo récapitulative du festival Génération Climat" },
-  { src: "https://res.cloudinary.com/dkwxhd6ck/video/upload/v1781640740/TeaserHalleAuxGrains2526_klb2zx.mp4", videoSlug: "video-4", fit:"contain", thumbnail:"/photosProjectSlugs/photosHAG/thumbnailTeaser.webp", alt: "Teaser de la Halle aux grains" },
-  { src: "https://res.cloudinary.com/dkwxhd6ck/video/upload/v1781640726/Vide%CC%81o_voeux_2026_mxfho0.mp4", videoSlug: "video-5", fit:"contain", thumbnail:"/photosProjectSlugs/photosHAG/thumbnailvoeux2026.webp", alt: "Vidéo de vœux 2026 de la Halle aux grains" },
+  { src: "https://res.cloudinary.com/dkwxhd6ck/video/upload/v1781640759/RecapGenerationClimat_xy0jya.mp4", videoSlug: "recap-generation-climat", fit:"contain", thumbnail:"/photosProjectSlugs/photosHAG/thumbnailGeneClimat.webp", alt: "Vidéo récapitulative du festival Génération Climat" },
+  { src: "https://res.cloudinary.com/dkwxhd6ck/video/upload/v1781640740/TeaserHalleAuxGrains2526_klb2zx.mp4", videoSlug: "teaser-halle-aux-grains", fit:"contain", thumbnail:"/photosProjectSlugs/photosHAG/thumbnailTeaser.webp", alt: "Teaser de la Halle aux grains" },
+  { src: "https://res.cloudinary.com/dkwxhd6ck/video/upload/v1781640726/Vide%CC%81o_voeux_2026_mxfho0.mp4", videoSlug: "voeux-2026-halle-aux-grains", fit:"contain", thumbnail:"/photosProjectSlugs/photosHAG/thumbnailvoeux2026.webp", alt: "Vidéo de vœux 2026 de la Halle aux grains" },
 ],
    stats: [
   { countTarget: 1800, prefix: "+ ", label: "abonnés", detail: "Tous réseaux confondus, en 18 mois." },
@@ -149,7 +156,7 @@ export const projects: Project[] = [
       {
         title: "Des capsules vidéo",
         text: "J'ai apporté ma touche en créant des capsules vidéo, une nouveauté pour le lieu.",
-        lien: { href: "/videos/video-2", label: "Voir la capsule Chato'do" },
+        lien: { href: "/videos/scene-nationale-chatodo", label: "Voir la capsule Chato'do" },
         visuels: [
           { src: "/photosHome/CouvChatodo.webp", alt: "Image de la capsule vidéo Scène nationale X Chato'do" },
         ],
@@ -198,6 +205,11 @@ export const projects: Project[] = [
   {
     slug: "pole-des-arts",
     title: "Pôle des arts Paul Gaudet",
+    seo: {
+      titre: "Pôle des arts Paul Gaudet : réseaux et site web",
+      description:
+        "Étude de cas : création des réseaux sociaux, du site et des newsletters d’une école d’arts. +1 000 abonnés partis de zéro, 54 % d’ouverture.",
+    },
     description:
       "Le Pôle des arts Paul Gaudet offre un panel de disciplines artistiques riches et diversifiées : musique, théâtre, danse, ou plus récemment, un département bien être. \n\nMon rôle : création des réseaux sociaux, community management, développement du site internet, newsletters et supports print.",
     siteUrl: "https://poledesarts-paulgaudet.fr/",
@@ -213,7 +225,7 @@ export const projects: Project[] = [
   { src: "/photosProjectSlugs/photosPoleDesArts/Afficheconcert.webp", alt: "Affiche du concert « Fantaisie et féerie » au Théâtre Beaumarchais" },
   { src: "/photosProjectSlugs/photosPoleDesArts/Afficheconcertoha.webp", alt: "Affiche du concert « Les cors sous les projecteurs » de l'Orchestre d'harmonie d'Amboise" },
   { src: "/photosProjectSlugs/photosPoleDesArts/Portesouvertes.webp", alt: "Flyers réalisés pour le Pôle des arts" },
-  { src: "https://res.cloudinary.com/dkwxhd6ck/video/upload/v1781694511/4PoleDesArts_dwxpqi.mp4", videoSlug: "video-6", fit:"contain", thumbnail:"/photosHome/CouvPoleDesArts.webp", alt: "Vidéo de présentation du Pôle des arts" },
+  { src: "https://res.cloudinary.com/dkwxhd6ck/video/upload/v1781694511/4PoleDesArts_dwxpqi.mp4", videoSlug: "presentation-pole-des-arts", fit:"contain", thumbnail:"/photosHome/CouvPoleDesArts.webp", alt: "Vidéo de présentation du Pôle des arts" },
 ],
     stats: [
   { countTarget: 1000, prefix: "+ ", label: "abonnés", detail: "En partant de zéro, sur Instagram, Facebook et LinkedIn." },
@@ -279,6 +291,11 @@ export const projects: Project[] = [
   {
     slug: "chambres-en-wrach",
     title: "Les Chambres en Wrac'h\nde L'Aber",
+    seo: {
+      titre: "Chambres en Wrac'h : site, logo et flyers",
+      description:
+        "Étude de cas : le site internet, le logo et les flyers d’une maison d’hôtes du Finistère, créés en deux mois. Elle a depuis des réservations toute l’année.",
+    },
     description:
       "Les Chambres en Wrac'h est une maison d'hôte située dans le Finistère en Bretagne. \n\nMon rôle : création complète du site internet (rédaction et photos), réalisation de flyers et création du logo de l'établissement.",
     siteUrl: "https://leschambresenwrachdelaber.fr/",

@@ -99,7 +99,7 @@ const tiles = [
     span: "",
     tile: (
       <VisualTile
-        href="/videos/video-2"
+        href="/videos/scene-nationale-chatodo"
         images={[{ src: "/photosHome/CouvChatodo.webp", alt: "" }]}
         kicker="Capsule vidéo"
         title="Scène nationale X Chato'do"
@@ -111,7 +111,7 @@ const tiles = [
     span: "row-span-2",
     tile: (
       <VisualTile
-        href="/videos/video-4"
+        href="/videos/teaser-halle-aux-grains"
         images={[{ src: "/photosHome/CouvTeaser.webp", alt: "" }]}
         kicker="Teaser"
         title="Teaser Scène nationale"
@@ -138,7 +138,7 @@ const tiles = [
     span: "",
     tile: (
       <VisualTile
-        href="/videos/video-1"
+        href="/videos/decouvertes-scene-nationale"
         images={[{ src: "/photosHome/CouvDecouvertes.webp", alt: "" }]}
         kicker="Retour en images"
         title="Découvertes Scène nationale"

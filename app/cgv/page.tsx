@@ -5,12 +5,14 @@ import Rubrique from "../components/rubrique";
 import ACompleter, { AFFICHER_EMPLACEMENTS } from "../components/aCompleter";
 import { contact } from "../data/contact";
 import { cgv, cgvCompletes } from "../data/cgv";
+import { metadonnees } from "../lib/seo";
 
-export const metadata = {
-  title: "Conditions générales de vente",
+export const metadata = metadonnees({
+  titre: "Conditions générales de vente",
   description:
     "Conditions générales de vente des prestations de communication digitale de Lola Gauchy, freelance à Tours.",
-};
+  chemin: "/cgv",
+});
 
 const lien = "font-semibold text-brand underline decoration-accent decoration-2 underline-offset-4";
 

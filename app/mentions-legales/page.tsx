@@ -1,12 +1,14 @@
 import Link from "next/link";
 import Rubrique from "../components/rubrique";
 import { contact } from "../data/contact";
+import { metadonnees } from "../lib/seo";
 
-export const metadata = {
-  title: "Mentions légales",
+export const metadata = metadonnees({
+  titre: "Mentions légales",
   description:
     "Mentions légales et données personnelles du site de Lola Gauchy, communicante digitale freelance à Tours.",
-};
+  chemin: "/mentions-legales",
+});
 
 const lien = "font-semibold text-brand underline decoration-accent decoration-2 underline-offset-4";
 

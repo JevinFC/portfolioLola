@@ -3,6 +3,7 @@ import { Unbounded, Urbanist } from "next/font/google";
 import "./globals.css";
 import Header from "./components/header";
 import Footer from "./components/footer";
+import { IMAGE_PARTAGE, SITE_NAME, SITE_URL } from "./lib/seo";
 
 const urbanist = Urbanist({
   variable: "--font-urbanist",
@@ -16,14 +17,16 @@ const unbounded = Unbounded({
   subsets: ["latin"],
 });
 
+// Valeurs par défaut : chaque page déclare ses propres titre, description, URL canonique
+// et aperçus de partage avec metadonnees() (lib/seo.ts)
 export const metadata: Metadata = {
   // Basique
   title: {
-    default: "Lola Gauchy — Communicante digitale freelance",
+    default: "Lola Gauchy · Communicante digitale freelance à Tours",
     template: "%s | Lola Gauchy", // chaque page peut avoir son propre titre
   },
   description:
-    "Lola Gauchy, communicante digitale freelance à Tours : réseaux sociaux et vidéos pour les lieux culturels, les lieux touristiques et les indépendants.",
+    "Communicante digitale et community manager freelance à Tours : stratégie, réseaux sociaux et vidéos tournées sur place, pour que le public vienne.",
   keywords: [
     "communicante digitale",
     "freelance Tours",
@@ -43,46 +46,39 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "fr_FR",
-    siteName: "Lola Gauchy",
-    title: "Lola Gauchy — Communicante digitale freelance",
+    siteName: SITE_NAME,
+    title: "Lola Gauchy · Communicante digitale freelance à Tours",
     description:
-      "Réseaux sociaux et vidéos pour faire venir le public dans les lieux culturels, les lieux touristiques et chez les indépendants. Basée à Tours, disponible en freelance.",
-    images: [
-      {
-        url: "/og-image.jpg", // image 1200x630px dans /public
-        width: 1200,
-        height: 630,
-        alt: "Lola Gauchy — Communicante digitale freelance",
-      },
-    ],
+      "Réseaux sociaux et vidéos tournées sur place pour faire venir le public. Basée à Tours, disponible en freelance.",
+    images: [IMAGE_PARTAGE],
   },
 
   // Twitter/X
   twitter: {
     card: "summary_large_image",
-    title: "Lola Gauchy — Communicante digitale freelance",
+    title: "Lola Gauchy · Communicante digitale freelance à Tours",
     description:
-      "Réseaux sociaux et vidéos pour faire venir le public dans les lieux culturels, les lieux touristiques et chez les indépendants. Basée à Tours, disponible en freelance.",
-    images: ["/og-image.jpg"],
+      "Réseaux sociaux et vidéos tournées sur place pour faire venir le public. Basée à Tours, disponible en freelance.",
+    images: [IMAGE_PARTAGE.url],
   },
 
-  // Indexation
+  // Indexation : Google peut montrer de grandes images, des extraits et des aperçus vidéo complets
   robots: {
     index: true,
     follow: true,
     googleBot: {
       index: true,
       follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
     },
   },
 
-  // Favicon
-  icons: {
-    icon: "/favicon.ico",
-  },
+  // Favicon : app/favicon.ico, ajouté automatiquement par Next
 
-  // URL du site : sert à générer les liens absolus (aperçus de partage, og-image...)
-  metadataBase: new URL("https://lolagauchy.fr"),
+  // URL du site : sert à générer les liens absolus (URL canoniques, aperçus de partage, og-image...)
+  metadataBase: new URL(SITE_URL),
 };
 
 export default function RootLayout({

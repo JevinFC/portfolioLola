@@ -18,7 +18,7 @@ const coeur = [
     icon: Clapperboard,
     title: "Vidéo",
     text: "Capsules, reels et teasers tournés sur place, montés et sous-titrés. C’est ma signature.",
-    href: "/videos/video-2",
+    href: "/videos/scene-nationale-chatodo",
     example: "capsule Chato'do",
   },
 ];

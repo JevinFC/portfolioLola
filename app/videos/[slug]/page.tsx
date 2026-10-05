@@ -6,6 +6,8 @@ import { projects } from "../../data/projects";
 import FadeUpOnScroll from "../../components/fadeUpOnScroll";
 import SectionTitle from "../../components/sectionTitle";
 import BandeauContact from "../../components/bandeauContact";
+import JsonLd from "../../components/jsonLd";
+import { filAriane, objetVideo } from "../../lib/schema";
 
 // Une page générée à l'avance par vidéo : titre et description dans le <head>, sans rendu à la demande
 export function generateStaticParams() {
@@ -28,6 +30,16 @@ export default async function VideoPage({ params }: { params: Promise<{ slug: st
 
   return (
     <div className="w-full bg-zinc-50 font-[urbanist] text-black">
+      {/* Données structurées : la vidéo (résultats vidéo de Google) et le fil d'Ariane */}
+      <JsonLd data={objetVideo(video)} />
+      <JsonLd
+        data={filAriane([
+          { nom: "Accueil", chemin: "/" },
+          { nom: "Projets", chemin: "/projects" },
+          ...(projet ? [{ nom: projet, chemin: `/projects/${video.projet}` }] : []),
+          { nom: video.title, chemin: `/videos/${video.slug}` },
+        ])}
+      />
 
       {/* LA VIDÉO, avec son contexte */}
       <section className="w-full bg-white pb-16 pt-32 md:pb-20 md:pt-36">

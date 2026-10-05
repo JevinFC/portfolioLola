@@ -1,8 +1,10 @@
 import Link from "next/link";
 import Sticker from "./components/sticker";
 
+// Jamais indexée : la consigne remplace celle du layout (index, follow)
 export const metadata = {
   title: "Page introuvable",
+  robots: { index: false, follow: true },
 };
 
 // Page 404 aux couleurs du site : le smiley de Lola remplace le 0

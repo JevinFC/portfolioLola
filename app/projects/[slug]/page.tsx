@@ -24,21 +24,29 @@ import Sticker from "../../components/sticker";
 import TopPublications from "../../components/topPublications";
 import BandeauContact from "../../components/bandeauContact";
 import ACompleter, { AFFICHER_EMPLACEMENTS } from "../../components/aCompleter";
+import JsonLd from "../../components/jsonLd";
+import { metadonnees } from "../../lib/seo";
+import { filAriane } from "../../lib/schema";
 
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const project = projects.find((p) => p.slug === slug);
+  if (!project) return { title: "Projet" };
 
-  return {
-    title: project?.title.replace("\n", " ") ?? "Projet",
-    description: project?.description.split("\n")[0] ?? "",
-  };
+  return metadonnees({
+    titre: project.seo.titre,
+    description: project.seo.description,
+    chemin: `/projects/${project.slug}`,
+    type: "article",
+  });
 }
 
+// Une page générée à l'avance par étude de cas ; toute autre adresse renvoie une vraie 404
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
 }
+export const dynamicParams = false;
 
 // Lignes de la fiche projet, dans l'ordre d'affichage
 const ficheLignes: { key: keyof Fiche; label: string; icon: LucideIcon }[] = [
@@ -107,6 +115,13 @@ export default async function IndivProject({ params }: { params: Promise<{ slug:
 
   return (
     <div className="w-full bg-zinc-50 font-[urbanist] text-black">
+      <JsonLd
+        data={filAriane([
+          { nom: "Accueil", chemin: "/" },
+          { nom: "Projets", chemin: "/projects" },
+          { nom: project.title.split("\n")[0], chemin: `/projects/${project.slug}` },
+        ])}
+      />
 
       {/* EN-TÊTE : le projet, sa fiche et les visuels réalisés */}
       <section className="w-full overflow-x-clip border-b border-zinc-200 bg-white pb-16 pt-32 md:pb-20 md:pt-36">
