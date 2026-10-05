@@ -105,6 +105,21 @@ html{
   animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
 
+/* Tarifs en escalier : chaque marche arrive en glissant depuis la gauche, l'une après l'autre */
+@keyframes marche {
+  from {
+    opacity: 0;
+    transform: translate(-28px, 14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.marche.reveal-in {
+  animation-name: marche;
+}
+
 /* Titre du hero qui apparaît mot par mot */
 @keyframes wordIn {
   from {
@@ -212,6 +227,7 @@ html{
   }
   .rise,
   .reveal-in,
+  .marche.reveal-in,
   .word-in,
   .pop-in,
   .float,

@@ -11,11 +11,16 @@
     },
     {
       "question": "Travaillez-vous avec le secteur culturel ?",
-      "answer": "Oui, j’ai une forte appétence pour le secteur culturel et créatif, que ce soit pour des lieux, des artistes ou des projets événementiels."
+      "answer": "Oui, c’est mon secteur de prédilection. Après avoir travaillé pour une scène nationale et un centre culturel, je parle votre langue : saison, billetterie, feuilles de salle, compagnies accueillies, publics scolaires et étudiants. J’accompagne aussi les lieux touristiques de Touraine (gîtes, chambres d’hôtes, domaines) et les indépendants qui reçoivent du public."
     },
     {
-      "question": "Comment fonctionne votre facturation pour vos prestations en marketing digital ?",
-      "answer": "Mes prestations étant adaptées aux besoins spécifiques de chaque client, la facturation se fait au cas par cas. Pour échanger sur votre projet et obtenir une proposition personnalisée, vous pouvez me contacter via le formulaire de contact du portfolio."
+      "question": "Pouvez-vous nous aider à toucher de nouveaux publics ?",
+      "answer": "C’est ce qu’on attendait de moi à la Halle aux grains, Scène nationale de Blois : toucher un public plus jeune et les professionnels. Avec des capsules vidéo, des reels et des contenus autour des temps forts, ses réseaux ont gagné plus de 1 800 abonnés en 18 mois, et ils atteignent plus de 25 000 vues par mois en moyenne."
+    },
+    {
+      "question": "Combien coûtent vos prestations ?",
+      "answer": "Pour vos réseaux sociaux, je propose trois abonnements mensuels sans engagement, à partir de 490 € par mois. Pour un besoin ponctuel : un audit de vos réseaux à partir de 450 €, une capsule vidéo à partir de 360 €, une affiche ou un flyer à partir de 230 €. Chaque projet fait ensuite l’objet d’un devis détaillé. TVA non applicable, article 293 B du CGI.",
+      "lien": { "href": "/#tarifs", "label": "Voir tous mes tarifs" }
     }
   ]
 }

@@ -50,10 +50,11 @@ export default function Header() {
         </p>
 
         {/* DESKTOP MENU */}
-        <nav className="hidden md:flex items-center gap-8 text-lg font-medium text-white mr-8 *:transition-transform *:duration-300 *:hover:scale-110">
+        <nav className="hidden md:flex items-center gap-6 lg:gap-8 text-lg font-medium text-white lg:mr-8 *:transition-transform *:duration-300 *:hover:scale-110">
           <Link href="/">Accueil</Link>
           <Link href="/about">À propos</Link>
           <Link href="/projects">Projets</Link>
+          <Link href="/#tarifs">Tarifs</Link>
           <Link href="/#contact" className="px-4 py-2 rounded-full bg-white text-brand font-semibold">
             Contact
           </Link>
@@ -79,6 +80,7 @@ export default function Header() {
           <Link onClick={() => setOpen(false)} href="/">Accueil</Link>
           <Link onClick={() => setOpen(false)} href="/about">À propos</Link>
           <Link onClick={() => setOpen(false)} href="/projects">Projets</Link>
+          <Link onClick={() => setOpen(false)} href="/#tarifs">Tarifs</Link>
           <Link
             onClick={() => setOpen(false)}
             href="/#contact"

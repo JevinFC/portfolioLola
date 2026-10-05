@@ -23,16 +23,17 @@ export const metadata: Metadata = {
     template: "%s | Lola Gauchy", // chaque page peut avoir son propre titre
   },
   description:
-    "Lola Gauchy, communicante digitale freelance à Tours. Création de contenu, stratégie réseaux sociaux, webdéveloppement, print et charte graphique.",
+    "Lola Gauchy, communicante digitale freelance à Tours : réseaux sociaux et vidéos pour les lieux culturels, les lieux touristiques et les indépendants.",
   keywords: [
     "communicante digitale",
     "freelance Tours",
-    "création de contenu",
+    "community manager Tours",
     "réseaux sociaux",
-    "community manager",
-    "webdéveloppement",
-    "SEO",
-    "charte graphique",
+    "vidéo",
+    "capsules vidéo",
+    "lieux culturels",
+    "création de contenu",
+    "print événementiel",
     "Lola Gauchy",
   ],
   authors: [{ name: "Lola Gauchy" }],
@@ -45,7 +46,7 @@ export const metadata: Metadata = {
     siteName: "Lola Gauchy",
     title: "Lola Gauchy — Communicante digitale freelance",
     description:
-      "Création de contenu, stratégie réseaux sociaux, webdéveloppement et print. Basée à Tours, disponible en freelance.",
+      "Réseaux sociaux et vidéos pour faire venir le public dans les lieux culturels, les lieux touristiques et chez les indépendants. Basée à Tours, disponible en freelance.",
     images: [
       {
         url: "/og-image.jpg", // image 1200x630px dans /public
@@ -61,7 +62,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Lola Gauchy — Communicante digitale freelance",
     description:
-      "Création de contenu, stratégie réseaux sociaux, webdéveloppement et print. Basée à Tours, disponible en freelance.",
+      "Réseaux sociaux et vidéos pour faire venir le public dans les lieux culturels, les lieux touristiques et chez les indépendants. Basée à Tours, disponible en freelance.",
     images: ["/og-image.jpg"],
   },
 

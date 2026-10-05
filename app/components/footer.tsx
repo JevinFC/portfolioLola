@@ -54,6 +54,7 @@ export default function Footer() {
         {/* --- Colonne droite : liens --- */}
         <nav aria-label="Pied de page" className="flex flex-col gap-1 md:text-right">
           <Link href="/projects" className={lien}>Mes projets</Link>
+          <Link href="/#tarifs" className={lien}>Mes tarifs</Link>
           <Link href="/about" className={lien}>À propos</Link>
           <a href="/CV_LolaGauchy.pdf" download className={lien}>Télécharger mon CV</a>
           <Link href="/mentions-legales" className={lien}>Mentions légales</Link>

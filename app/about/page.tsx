@@ -60,7 +60,7 @@ const formations = [
     school: "Excelia Campus de Tours",
     img: "/photosHome/ExceliaTours.webp",
     alt: "Hall du campus Excelia à Tours",
-    note: "Fraîchement diplômée · BAC +5",
+    note: "Diplômée · Bac +5",
   },
 ];
 

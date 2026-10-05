@@ -6,6 +6,7 @@ import Sticker from "./components/sticker";
 import AnimatedWords from "./components/animatedWords";
 import Marquee from "./components/marquee";
 import Services from "./components/services";
+import Tarifs from "./components/tarifs";
 import Temoignages from "./components/temoignages";
 import SectionTitle from "./components/sectionTitle";
 import FadeUpOnScroll from "./components/fadeUpOnScroll";
@@ -33,12 +34,12 @@ export default function Home() {
       </p>
 
       <h1 className="text-brand text-[1.75rem] sm:text-4xl xl:text-5xl leading-[1.12] font-extrabold mb-6">
-        <AnimatedWords text="Je fais parler des lieux culturels et des indépendants" accent="sur les réseaux." delay={0.15} />
+        <AnimatedWords text="Je fais parler de vous sur les réseaux," accent="pour que le public vienne." delay={0.15} />
       </h1>
 
       <p className="rise text-black text-base md:text-lg mb-8" style={{ animationDelay: "0.65s" }}>
-        J’aide les entreprises et les micro-entrepreneurs à gagner en visibilité
-        sur les réseaux sociaux et le web.
+        Stratégie, contenus, vidéos tournées sur place&nbsp;: je m’occupe de vos réseaux, vous gardez du temps
+        pour votre métier.
       </p>
 
       {/* Preuve chiffrée */}
@@ -108,6 +109,9 @@ export default function Home() {
 
       {/* SECTION SERVICES : aplat bleu */}
       <Services />
+
+      {/* SECTION TARIFS : abonnements mensuels et prestations à la carte, en prix « à partir de » */}
+      <Tarifs />
 
       {/* SECTION AVIS : un avis à la fois, en grand */}
       <div className="w-full bg-zinc-50 py-20 md:py-24">

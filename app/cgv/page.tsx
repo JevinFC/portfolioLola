@@ -97,6 +97,12 @@ export default function Cgv() {
               10 points, ainsi qu’une indemnité forfaitaire de 40&nbsp;€ pour frais de recouvrement (articles L441-10 et
               D441-5 du Code de commerce).
             </p>
+            <p>
+              Pour un client public (collectivité, établissement public), ce sont les règles de la commande publique qui
+              s’appliquent&nbsp;: la facture est déposée sur Chorus Pro et réglée dans le délai fixé par le Code de la
+              commande publique (30&nbsp;jours pour la plupart des acheteurs publics), avec les intérêts moratoires qu’il
+              prévoit en cas de retard.
+            </p>
           </Rubrique>
 
           <Rubrique titre="Déroulement de la mission">
