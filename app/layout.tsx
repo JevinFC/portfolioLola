@@ -75,7 +75,14 @@ export const metadata: Metadata = {
     },
   },
 
-  // Favicon : app/favicon.ico, ajouté automatiquement par Next
+  // Favicon : app/favicon.ico (16 à 48 px), ajouté automatiquement par Next, et ses versions
+  // en haute définition (Google recommande plus de 48 px ; 180 px pour l'écran d'accueil iPhone).
+  // Elles sont dans public/, servies telles quelles : placées dans app/ (icon.png), elles faisaient
+  // échouer le build sur Cloudflare Pages
+  icons: {
+    icon: [{ url: "/icon.png", type: "image/png", sizes: "192x192" }],
+    apple: [{ url: "/apple-icon.png", type: "image/png", sizes: "180x180" }],
+  },
 
   // URL du site : sert à générer les liens absolus (URL canoniques, aperçus de partage, og-image...)
   metadataBase: new URL(SITE_URL),
