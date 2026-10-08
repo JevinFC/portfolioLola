@@ -40,10 +40,17 @@ const complements = [
   },
 ];
 
-// Lien vers le projet qui sert d'exemple, avec sa flèche qui avance au survol de la carte
+// Lien vers le projet qui sert d'exemple, avec sa flèche qui avance au survol de la carte.
+// Sa zone cliquable (::after) recouvre toute la carte : on clique n'importe où, mais il reste
+// un seul lien, lu « Exemple : … » par les lecteurs d'écran et atteint en une tabulation
 function Exemple({ href, example, onDark = false }: { href: string; example: string; onDark?: boolean }) {
   return (
-    <Link href={href} className={`mt-auto pt-6 text-sm font-semibold hover:underline ${onDark ? "text-white" : "text-brand"}`}>
+    <Link
+      href={href}
+      className={`mt-auto pt-6 text-sm font-semibold outline-none after:absolute after:inset-0 after:rounded-2xl group-hover:underline ${
+        onDark ? "text-white" : "text-brand"
+      }`}
+    >
       Exemple&nbsp;: {example}{" "}
       <span aria-hidden="true" className="inline-block transition-transform duration-300 group-hover:translate-x-1">
         →
@@ -71,7 +78,7 @@ export default function Services() {
               key={title}
               as="li"
               delay={i * 90}
-              className="group flex flex-col rounded-2xl bg-white p-7 shadow-lg transition duration-300 hover:-translate-y-1.5 hover:shadow-2xl md:p-9"
+              className="group relative flex flex-col rounded-2xl bg-white p-7 shadow-lg transition duration-300 hover:-translate-y-1.5 hover:shadow-2xl has-[a:focus-visible]:ring-4 has-[a:focus-visible]:ring-accent md:p-9"
             >
               <span className="flex h-14 w-14 items-center justify-center rounded-full bg-accent text-white transition-transform duration-300 group-hover:-rotate-12 group-hover:scale-110">
                 <Icon className="h-7 w-7" aria-hidden="true" />
@@ -90,7 +97,7 @@ export default function Services() {
               key={title}
               as="li"
               delay={i * 90}
-              className="group flex flex-col rounded-2xl border border-white/25 bg-white/5 p-6 transition duration-300 hover:bg-white/10"
+              className="group relative flex flex-col rounded-2xl border border-white/25 bg-white/5 p-6 transition duration-300 hover:-translate-y-1 hover:bg-white/10 has-[a:focus-visible]:ring-4 has-[a:focus-visible]:ring-accent"
             >
               <div className="flex items-center gap-4">
                 <span className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full bg-white/15 text-white transition-transform duration-300 group-hover:-rotate-12">
