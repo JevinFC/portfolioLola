@@ -68,7 +68,7 @@ export default function Footer() {
         <p className="mx-auto max-w-[1200px] px-6 py-5 text-sm text-white/70 md:px-10">
           © {new Date().getFullYear()} Lola Gauchy · Développé par{" "}
           <a
-            href="https://portfolio.kevinmachado.dev/"
+            href="https://hachado.fr/"
             target="_blank"
             rel="noopener noreferrer"
             className="underline underline-offset-2 transition hover:text-white"

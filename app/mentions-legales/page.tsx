@@ -46,8 +46,8 @@ export default function MentionsLegales() {
           <Rubrique titre="Conception et développement">
             <p>
               Kévin Machado,{" "}
-              <a href="https://portfolio.kevinmachado.dev/" target="_blank" rel="noopener noreferrer" className={lien}>
-                portfolio.kevinmachado.dev
+              <a href="https://hachado.fr/" target="_blank" rel="noopener noreferrer" className={lien}>
+                hachado.fr
               </a>
               .
             </p>
