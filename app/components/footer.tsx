@@ -73,7 +73,7 @@ export default function Footer() {
             rel="noopener noreferrer"
             className="underline underline-offset-2 transition hover:text-white"
           >
-            Kévin Machado
+            Hachado
           </a>
         </p>
       </div>
