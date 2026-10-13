@@ -7,6 +7,7 @@ import AnimatedWords from "./components/animatedWords";
 import Marquee from "./components/marquee";
 import Services from "./components/services";
 import Tarifs from "./components/tarifs";
+import BoutonRendezVous from "./components/boutonRendezVous";
 import Temoignages from "./components/temoignages";
 import SectionTitle from "./components/sectionTitle";
 import FadeUpOnScroll from "./components/fadeUpOnScroll";
@@ -51,9 +52,14 @@ export default function Home() {
         <AnimatedWords text="Je fais parler de vous sur les réseaux," accent="pour que le public vienne." delay={0.15} />
       </h1>
 
-      <p className="rise text-black text-base md:text-lg mb-8" style={{ animationDelay: "0.65s" }}>
+      <p className="rise text-black text-base md:text-lg mb-4" style={{ animationDelay: "0.65s" }}>
         Stratégie, contenus, vidéos tournées sur place&nbsp;: je m’occupe de vos réseaux, vous gardez du temps
         pour votre métier.
+      </p>
+
+      {/* Pour qui : un positionnement généraliste */}
+      <p className="rise text-brand text-sm md:text-base font-semibold mb-8" style={{ animationDelay: "0.72s" }}>
+        Commerces, indépendants, associations et lieux qui reçoivent du public
       </p>
 
       {/* Preuve chiffrée */}
@@ -67,19 +73,14 @@ export default function Home() {
         </span>
       </div>
 
-      {/* Appels à l’action */}
-      <div className="rise flex flex-wrap justify-center lg:justify-start gap-3" style={{ animationDelay: "0.95s" }}>
+      {/* Appels à l’action : le rendez-vous découverte d'abord, la porte d'entrée vers un abonnement */}
+      <div className="rise flex flex-wrap items-center justify-center lg:justify-start gap-3" style={{ animationDelay: "0.95s" }}>
+        <BoutonRendezVous />
         <Link
           href="/projects"
-          className="px-6 py-3 rounded-full border-2 border-brand bg-brand text-white font-semibold hover:scale-105 transition"
-        >
-          Voir mes projets
-        </Link>
-        <Link
-          href="/#contact"
           className="px-6 py-3 rounded-full border-2 border-brand text-brand font-semibold hover:bg-brand hover:text-white transition"
         >
-          Me contacter
+          Voir mes projets
         </Link>
       </div>
     </div>

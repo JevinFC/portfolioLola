@@ -80,7 +80,7 @@ export default function Cgv() {
           </Rubrique>
 
           <Rubrique titre="Prix">
-            <p>Les prix sont indiqués en euros sur le devis.</p>
+            <p>Les prix sont indiqués en euros et hors taxes, sur le devis.</p>
             <Regle texte={cgv.tva} question="CGV 3">
               Si Lola est en franchise de TVA&nbsp;: « TVA non applicable, article 293 B du CGI ».
             </Regle>
@@ -121,9 +121,50 @@ export default function Cgv() {
               plus, par exemple).
             </Regle>
             <p>
+              Les interventions sur place le soir (à partir de 19&nbsp;heures) ou le week-end sont majorées de
+              20&nbsp;%. Les déplacements au-delà de Tours Métropole sont facturés selon un forfait indiqué sur le devis.
+            </p>
+            <p>
               Les résultats sur les réseaux sociaux (portée, abonnés, interactions) dépendent aussi des plateformes et
               de leurs algorithmes&nbsp;: ils ne peuvent pas être garantis.
             </p>
+          </Rubrique>
+
+          {/* Conditions particulières des abonnements (octobre 2026) : c'est par là que les forfaits débordent */}
+          <Rubrique titre="Abonnements mensuels">
+            <p>
+              Les abonnements mensuels aux réseaux sociaux (Présence, Rayonnement, Saison) suivent les conditions
+              particulières ci-dessous. Elles complètent les présentes CGV et, quand elles en diffèrent, ce sont elles
+              qui s’appliquent.
+            </p>
+            <p>
+              Le premier mois, des frais de mise en route, indiqués sur le devis, couvrent la création des modèles de publication aux couleurs du client, la
+              mise en place des accès et un audit express des comptes.
+            </p>
+            <p>L’abonnement est facturé le 1er de chaque mois, d’avance&nbsp;; aucun acompte n’est demandé.</p>
+            <p>
+              Les quantités prévues (publications, stories, vidéos) sont des totaux par mois, tous réseaux
+              confondus&nbsp;: une même publication diffusée sur plusieurs réseaux compte une seule fois.
+            </p>
+            <p>
+              Le calendrier du mois est validé en une seule fois, sous 48&nbsp;heures. Chaque publication comprend une
+              série de retouches&nbsp;; au-delà, les retouches sont facturées au temps passé, selon le tarif horaire
+              indiqué sur le devis.
+            </p>
+            <p>
+              Pour un événement, le client transmet les informations utiles (date, programme, visuels) au moins
+              3&nbsp;semaines à l’avance. Quand une validation ou une information arrive en retard, les publications
+              concernées sont décalées d’autant.
+            </p>
+            <p>
+              La modération (réponses aux commentaires et aux messages) est assurée les jours ouvrés, au rythme prévu
+              par la formule.
+            </p>
+            <p>
+              Si le client a commandé un audit, son prix est déduit de l’abonnement signé dans les 30&nbsp;jours qui
+              suivent, par tiers, sur chacun des 3&nbsp;premiers mois.
+            </p>
+            <p>La durée de l’abonnement et sa résiliation sont précisées dans la rubrique suivante.</p>
           </Rubrique>
 
           <Rubrique titre="Annulation et résiliation">
@@ -140,6 +181,17 @@ export default function Cgv() {
               (après paiement complet, par exemple). Les fichiers sources sont-ils fournis&nbsp;? Lola peut-elle montrer
               les réalisations dans son portfolio&nbsp;?
             </Regle>
+            <p>
+              Cette cession ne porte que sur les droits que Lola Gauchy détient sur ses créations. Les éléments qui
+              appartiennent à des tiers (musiques, polices, images de banques d’images) sont utilisés selon les
+              conditions de leur licence, que le client respecte à son tour.
+            </p>
+            <p>
+              Pour un tournage ou une prise de vue dans ses locaux ou pendant son événement, le client garantit avoir
+              obtenu l’autorisation écrite des personnes filmées ou photographiées (celle de leurs représentants légaux
+              pour les mineurs), ainsi que celle des artistes dont la prestation est enregistrée. Lola Gauchy peut lui
+              fournir un modèle d’autorisation.
+            </p>
           </Rubrique>
 
           <Rubrique titre="Responsabilité">
@@ -165,6 +217,21 @@ export default function Cgv() {
                 mentions légales
               </Link>
               .
+            </p>
+            <p>
+              Quand la prestation l’amène à traiter des données personnelles pour le compte du client (abonnés d’une
+              newsletter, messages reçus sur les réseaux sociaux…), Lola Gauchy agit comme sous-traitante, au sens de
+              l’article&nbsp;28 du RGPD, et le client reste responsable du traitement. Elle traite ces données
+              uniquement pour la prestation et selon les instructions du client, en garantit la confidentialité et la
+              sécurité, ne les réutilise pas, prévient le client sans délai en cas de violation de données, l’aide à
+              répondre aux demandes des personnes concernées, et les supprime ou les lui restitue à la fin de la
+              prestation. Le client l’autorise à utiliser les outils nécessaires à la prestation (un outil d’envoi de
+              newsletters, par exemple).
+            </p>
+            <p>
+              Les accès aux comptes du client sont donnés de préférence par des rôles (administrateur, collaborateur)
+              plutôt que par un mot de passe, protégés par une double authentification, et retirés à la fin de la
+              prestation.
             </p>
           </Rubrique>
 

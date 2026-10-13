@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { contact } from "../data/contact";
+import { contact, telephoneInternational } from "../data/contact";
 import { cgvCompletes } from "../data/cgv";
 import { AFFICHER_EMPLACEMENTS } from "./aCompleter";
 
@@ -19,6 +19,12 @@ export default function Footer() {
             className="mt-3 self-start font-semibold underline decoration-accent decoration-2 underline-offset-4 transition hover:text-accent"
           >
             {contact.email}
+          </a>
+          <a
+            href={`tel:${telephoneInternational}`}
+            className="self-start font-semibold underline decoration-accent decoration-2 underline-offset-4 transition hover:text-accent"
+          >
+            {contact.telephone}
           </a>
 
           {/* Icônes réseaux */}
@@ -56,7 +62,6 @@ export default function Footer() {
           <Link href="/projects" className={lien}>Mes projets</Link>
           <Link href="/#tarifs" className={lien}>Mes tarifs</Link>
           <Link href="/about" className={lien}>À propos</Link>
-          <a href="/CV_LolaGauchy.pdf" download className={lien}>Télécharger mon CV</a>
           <Link href="/mentions-legales" className={lien}>Mentions légales</Link>
           {/* Lien affiché en production seulement une fois les CGV complètes (data/cgv.ts) */}
           {(cgvCompletes || AFFICHER_EMPLACEMENTS) && <Link href="/cgv" className={lien}>CGV</Link>}

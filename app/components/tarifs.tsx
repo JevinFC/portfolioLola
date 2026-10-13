@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { Check, Plus } from "lucide-react";
+import BoutonRendezVous from "./boutonRendezVous";
 import FadeUpOnScroll from "./fadeUpOnScroll";
 import SectionTitle from "./sectionTitle";
 import Sticker from "./sticker";
-import { formules, prestations, type Ligne } from "../data/tarifs";
+import { audit, formules, miseEnRoute, options, prestations, type Ligne } from "../data/tarifs";
 
 // Prix en euros, avec des espaces insécables (« 1 390 € ») : l'espace fine du format français
 // n'existe pas dans Unbounded et s'afficherait presque collée
@@ -58,7 +59,8 @@ function Texte({ ligne, fort }: { ligne: Ligne; fort: string }) {
 }
 
 // Section « Mes tarifs » de l'accueil : les abonnements en escalier cumulatif (chaque formule reprend
-// la précédente), puis les prestations à la carte. Des prix « à partir de » : le détail est dans le devis
+// la précédente), leurs options et leurs conditions, le rendez-vous découverte, puis les prestations
+// à la carte. Des prix hors taxes, « à partir de » : le détail est dans le devis
 export default function Tarifs() {
   return (
     <section id="tarifs" className="w-full scroll-mt-20 bg-white py-20 md:py-24">
@@ -67,7 +69,7 @@ export default function Tarifs() {
           <SectionTitle title="Mes tarifs" sticker="smiley" />
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-zinc-700">
             Pour vos réseaux sociaux, trois abonnements qui s’emboîtent&nbsp;: chaque formule reprend la précédente et y
-            ajoute de quoi aller plus loin. Sans engagement, avec un préavis de 15&nbsp;jours.
+            ajoute de quoi aller plus loin.
           </p>
         </FadeUpOnScroll>
 
@@ -147,7 +149,73 @@ export default function Tarifs() {
           })}
         </ol>
 
-        {/* À LA CARTE : l'audit en premier, comme porte d'entrée */}
+        {/* OPTIONS ET CONDITIONS des abonnements : affichées ici pour qu'aucun devis ne réserve de surprise */}
+        <div className="mt-10 grid gap-6 lg:grid-cols-2">
+          <FadeUpOnScroll className="rounded-3xl border-2 border-zinc-200 p-6 md:p-8">
+            <h3 className="font-display text-xl font-extrabold text-brand md:text-2xl">En option</h3>
+            <p className="mt-1 text-[0.9375rem] text-zinc-600">Avec chacune des formules.</p>
+            <ul className="mt-3">
+              {options.map((option) => (
+                <li
+                  key={option.nom}
+                  className="flex items-start justify-between gap-6 border-b border-zinc-200 py-4 last:border-b-0 last:pb-0"
+                >
+                  <div className="min-w-0">
+                    <p className="font-bold text-zinc-900">{option.nom}</p>
+                    <p className="mt-1 text-sm leading-relaxed text-zinc-600">{option.detail}</p>
+                  </div>
+                  <p className="flex-shrink-0 text-right font-display text-lg font-extrabold text-brand">
+                    {option.prix ? euros(option.prix) : "Sur devis"}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </FadeUpOnScroll>
+
+          <FadeUpOnScroll delay={100} className="rounded-3xl bg-accent/10 p-6 md:p-8">
+            <h3 className="font-display text-xl font-extrabold text-brand md:text-2xl">Bon à savoir</h3>
+            <ul className="mt-5 flex flex-col gap-4 leading-relaxed text-zinc-700">
+              <li className="flex items-start gap-3">
+                <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-accent" aria-hidden="true" />
+                <span>
+                  <strong className="font-bold text-zinc-900">Mise en route&nbsp;: {euros(miseEnRoute)}</strong>, le
+                  premier mois. Je crée vos modèles de publication à vos couleurs, je mets en place les accès à vos comptes
+                  et je fais un audit express.
+                </span>
+              </li>
+              <li className="flex items-start gap-3">
+                <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-accent" aria-hidden="true" />
+                <span>
+                  <strong className="font-bold text-zinc-900">Une première période de 3&nbsp;mois</strong>, puis sans
+                  engagement&nbsp;: vous arrêtez quand vous voulez, avec un préavis de 15&nbsp;jours.
+                </span>
+              </li>
+              <li className="flex items-start gap-3">
+                <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-accent" aria-hidden="true" />
+                <span>
+                  <strong className="font-bold text-zinc-900">L’audit déduit</strong>&nbsp;: si vous avez commandé un
+                  audit ({euros(audit.prix)}), il est déduit de votre abonnement signé dans les 30&nbsp;jours, à raison
+                  de {euros(audit.prix / 3)} sur chacun des 3&nbsp;premiers mois.
+                </span>
+              </li>
+            </ul>
+          </FadeUpOnScroll>
+        </div>
+
+        {/* RENDEZ-VOUS DÉCOUVERTE : pour choisir sa formule avec Lola (sur téléphone, en bande pleine largeur :
+            le bouton y garde toute la place pour ne pas se couper) */}
+        <FadeUpOnScroll className="-mx-6 mt-6 flex flex-col gap-6 bg-zinc-50 px-6 py-8 md:mx-0 md:flex-row md:items-center md:justify-between md:rounded-3xl md:p-8">
+          <div className="max-w-xl">
+            <p className="font-display text-lg font-extrabold text-brand md:text-xl">Vous hésitez entre deux formules&nbsp;?</p>
+            <p className="mt-2 leading-relaxed text-zinc-700">
+              Parlons-en pendant un rendez-vous découverte&nbsp;: on regarde vos réseaux ensemble, et je vous conseille
+              la formule qui vous correspond.
+            </p>
+          </div>
+          <BoutonRendezVous className="flex-shrink-0 self-start md:self-auto" />
+        </FadeUpOnScroll>
+
+        {/* À LA CARTE : l'audit en premier, pour un plan détaillé avant de s'engager */}
         <FadeUpOnScroll className="mt-20">
           <h3 className="font-display text-2xl font-extrabold text-brand md:text-3xl">À la carte</h3>
           <p className="mt-3 max-w-2xl text-lg leading-relaxed text-zinc-700">
@@ -165,9 +233,9 @@ export default function Tarifs() {
               <div className="min-w-0">
                 <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-lg font-bold text-zinc-900">
                   {prestation.nom}
-                  {prestation.pourCommencer && (
+                  {prestation.pastille && (
                     <span className="rounded-full bg-accent/15 px-2.5 py-0.5 text-xs font-bold uppercase tracking-[0.1em] text-brand">
-                      Pour commencer
+                      {prestation.pastille}
                     </span>
                   )}
                 </p>
@@ -183,8 +251,8 @@ export default function Tarifs() {
 
         <div className="mt-10 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
           <p className="max-w-2xl text-sm leading-relaxed text-zinc-600">
-            TVA non applicable, article 293&nbsp;B du CGI&nbsp;: pas de taxe en plus. Chaque projet fait l’objet d’un
-            devis détaillé, ajusté à vos besoins.
+            Prix hors taxes. TVA non applicable, article 293&nbsp;B du CGI&nbsp;; si j’y deviens assujettie, elle
+            s’ajoutera aux prix. Chaque projet fait l’objet d’un devis détaillé, ajusté à vos besoins.
           </p>
           <Link
             href="/#contact"

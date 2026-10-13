@@ -1,5 +1,5 @@
 import { SITE_NAME, SITE_URL, absolu } from "./seo";
-import { contact } from "../data/contact";
+import { contact, telephoneInternational as telephone } from "../data/contact";
 import { formules, prestations } from "../data/tarifs";
 
 // Données structurées (schema.org) : elles décrivent à Google qui est Lola, ce qu'elle propose,
@@ -20,7 +20,6 @@ const adresse = {
   addressCountry: "FR",
 };
 
-const telephone = "+33" + contact.telephone.replace(/\s/g, "").slice(1);
 const reseaux = [contact.linkedin, contact.instagram];
 
 // Lola : la personne derrière le site

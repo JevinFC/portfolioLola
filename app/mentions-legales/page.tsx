@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Rubrique from "../components/rubrique";
-import { contact } from "../data/contact";
+import { contact, telephoneInternational } from "../data/contact";
 import { metadonnees } from "../lib/seo";
 
 export const metadata = metadonnees({
@@ -18,8 +18,6 @@ export default function MentionsLegales() {
       {contact.email}
     </a>
   );
-  // « 06 16 31 84 84 » → « +33616318484 », le format attendu par les liens tel:
-  const telephone = "+33" + contact.telephone.replace(/\s/g, "").slice(1);
 
   return (
     <div className="w-full bg-zinc-50 font-[urbanist] text-black">
@@ -35,7 +33,7 @@ export default function MentionsLegales() {
             <p>Adresse&nbsp;: {contact.adresse}</p>
             <p>
               Téléphone&nbsp;:{" "}
-              <a href={`tel:${telephone}`} className={lien}>
+              <a href={`tel:${telephoneInternational}`} className={lien}>
                 {contact.telephone}
               </a>
             </p>

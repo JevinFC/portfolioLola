@@ -10,7 +10,7 @@ export type Stat = {
 // Cadre de la mission, affiché sous le titre de l'étude de cas
 export type Fiche = {
   periode?: string; // ← ex : « Sept. 2023 → août 2025 »
-  statut?: string; // ← alternance, stage, freelance...
+  statut?: string; // ← « Mission », suivi du rôle s'il y a lieu (ex : « Mission, assistante en communication digitale »)
   equipe?: string; // ← seule ou en équipe
   outils?: string; // ← ex : « Canva, Premiere Pro, Meta Business Suite »
 };
@@ -144,7 +144,7 @@ export const projects: Project[] = [
     // Réponses de Lola au questionnaire (projet 1)
     fiche: {
       periode: "2024 → 2026 · 2 ans",
-      statut: "Alternance, assistante en communication digitale",
+      statut: "Mission, assistante en communication digitale",
       equipe: "Avec Sandrine Lhuillier, responsable communication et presse",
       outils: "InDesign, Photoshop, Premiere Pro, Canva, CapCut, Google Analytics, Meta Business Suite",
     },
@@ -260,7 +260,7 @@ export const projects: Project[] = [
     // Réponses de Lola au questionnaire (projet 2)
     fiche: {
       periode: "2022 → 2023",
-      statut: "Alternance",
+      statut: "Mission",
       equipe: "Seule au pôle communication",
       outils: "InDesign, Photoshop, Canva, Brevo, Google Analytics, WordPress",
     },
@@ -315,7 +315,7 @@ export const projects: Project[] = [
   { src: "/photosProjectSlugs/photosChambresEnWrach/francoise.webp", fit:"cover", alt: "Portrait de Françoise, l'hôtesse des Chambres en Wrac'h" },
 ],
     stats: [
-  { countTarget: 2, label: "mois pour tout créer", detail: "Le site internet, le logo et les flyers, pendant mon stage." },
+  { countTarget: 2, label: "mois pour tout créer", detail: "Le site internet, le logo et les flyers, en partant de zéro." },
 ],
     sections: [
       {
@@ -338,7 +338,7 @@ export const projects: Project[] = [
     // Réponses de Lola au questionnaire (projet 3)
     fiche: {
       periode: "2021 · 2 mois",
-      statut: "Stage",
+      statut: "Mission",
       equipe: "Seule à la communication",
       outils: "WordPress",
     },

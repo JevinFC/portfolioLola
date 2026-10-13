@@ -6,8 +6,6 @@ import {
   Clapperboard,
   Clock,
   Compass,
-  Download,
-  Drama,
   Eye,
   Gem,
   MapPin,
@@ -21,6 +19,7 @@ import Faq from "../components/faq";
 import HeroVisual from "../components/heroVisual";
 import SectionTitle from "../components/sectionTitle";
 import BandeauContact from "../components/bandeauContact";
+import BoutonRendezVous from "../components/boutonRendezVous";
 import AnimatedWords from "../components/animatedWords";
 import FadeUpOnScroll from "../components/fadeUpOnScroll";
 import { projects } from "../data/projects";
@@ -45,7 +44,6 @@ export const metadata = metadonnees({
 const reperes = [
   { icon: MapPin, label: "Basée à Tours" },
   { icon: Briefcase, label: "Freelance" },
-  { icon: Drama, label: "Secteur culturel" },
 ];
 
 // Formations, dans l'ordre chronologique
@@ -129,21 +127,14 @@ export default function About() {
             ))}
           </ul>
 
-          <div className="rise flex flex-wrap justify-center lg:justify-start gap-3" style={{ animationDelay: "1s" }}>
+          <div className="rise flex flex-wrap items-center justify-center lg:justify-start gap-3" style={{ animationDelay: "1s" }}>
+            <BoutonRendezVous />
             <Link
               href="/#contact"
-              className="px-6 py-3 rounded-full border-2 border-brand bg-brand text-white font-semibold hover:scale-105 transition"
+              className="px-6 py-3 rounded-full border-2 border-brand text-brand font-semibold hover:bg-brand hover:text-white transition"
             >
               Me contacter
             </Link>
-            <a
-              href="/CV_LolaGauchy.pdf"
-              download
-              className="flex items-center gap-2 px-6 py-3 rounded-full border-2 border-brand text-brand font-semibold hover:bg-brand hover:text-white transition"
-            >
-              <Download className="h-4 w-4" aria-hidden="true" />
-              Télécharger mon CV
-            </a>
           </div>
         </div>
 
@@ -157,8 +148,8 @@ export default function About() {
         <div className="max-w-[1200px] mx-auto px-6 md:px-20">
           <FadeUpOnScroll><SectionTitle title="Mon parcours" sticker="smiley" /></FadeUpOnScroll>
           <p className="mt-6 max-w-3xl text-base md:text-lg leading-relaxed text-zinc-700">
-            J’ai découvert la communication pendant mes études, à travers des stages et des alternances, dans des environnements
-            variés (entrepreneur, PME, associations...). Ces expériences m’ont appris à m’adapter rapidement, à comprendre
+            J’ai découvert la communication pendant mes études, au fil de missions dans des environnements variés
+            (entrepreneur, PME, associations...). Ces expériences m’ont appris à m’adapter rapidement, à comprendre
             les enjeux et à créer des stratégies digitales réalisables et efficaces.
           </p>
 
@@ -197,7 +188,7 @@ export default function About() {
                   className="group flex h-full flex-col rounded-2xl border border-zinc-200 bg-zinc-50 p-6 transition duration-300 hover:-translate-y-1 hover:border-brand/30 hover:shadow-lg"
                 >
                   <span className="text-xs font-semibold uppercase tracking-[0.12em] text-zinc-600">
-                    {/* « Alternance, assistante en communication digitale » → « Alternance » */}
+                    {/* « Mission, assistante en communication digitale » → « Mission » */}
                     {[projet.fiche?.periode, projet.fiche?.statut?.split(",")[0]].filter(Boolean).join(" · ")}
                   </span>
                   <h4 className="mt-2 font-display text-lg font-extrabold text-brand">{projet.title.split("\n")[0]}</h4>

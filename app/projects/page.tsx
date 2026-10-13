@@ -16,7 +16,7 @@ export const metadata = metadonnees({
   chemin: "/projects",
 });
 
-// Projets fictifs réalisés en formation (sans étude de cas détaillée)
+// Projets de création réalisés en formation (sans étude de cas détaillée) : jamais présentés comme des missions
 const autresProjets = [
   {
     titre: "Little Riders",
@@ -60,7 +60,7 @@ export default function Projects() {
       {/* ÉTUDES DE CAS : le visuel et le texte en alternance */}
       {projects.map((project, i) => {
         const chiffre = project.stats?.[0];
-        // « Alternance, assistante en communication digitale » → « Alternance »
+        // « Mission, assistante en communication digitale » → « Mission »
         const statut = project.fiche?.statut?.split(",")[0];
         const reperes = [project.fiche?.periode, statut].filter(Boolean).join(" · ");
 
@@ -124,13 +124,13 @@ export default function Projects() {
         );
       })}
 
-      {/* AUTRES PROJETS : projets fictifs réalisés en formation */}
+      {/* AUTRES PROJETS : projets de création réalisés en formation */}
       <section className={`w-full py-20 md:py-24 ${projects.length % 2 === 0 ? "bg-zinc-50" : "bg-white"}`}>
         <div className="mx-auto max-w-[1200px] px-6 md:px-10">
           <FadeUpOnScroll>
             <SectionTitle title="Autres projets" sticker="flower" />
             <p className="mt-4 max-w-2xl text-lg leading-relaxed text-zinc-700">
-              Des projets fictifs, réalisés pendant mes formations.
+              Des projets de création, réalisés pendant mes formations.
             </p>
           </FadeUpOnScroll>
 
@@ -148,7 +148,7 @@ export default function Projects() {
                   className={`w-full rounded-2xl object-cover shadow-lg ${projet.grand ? "lg:min-h-0 lg:flex-1" : ""}`}
                 />
                 <p className="mt-5 self-start rounded-full bg-accent/15 px-3 py-1 text-xs font-bold uppercase tracking-[0.12em] text-brand">
-                  Projet fictif
+                  Projet de création
                 </p>
                 <h3 className="mt-3 font-display text-xl font-extrabold text-brand md:text-2xl">{projet.titre}</h3>
                 <p className="mt-1 text-zinc-600">{projet.texte}</p>

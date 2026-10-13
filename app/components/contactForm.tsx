@@ -2,8 +2,10 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { CalendarCheck } from "lucide-react";
 import emailjs from "@emailjs/browser";
 import { contact } from "../data/contact";
+import { LienRendezVous } from "./boutonRendezVous";
 
 const champ =
   "w-full rounded-lg border border-zinc-300 px-4 py-2.5 text-base focus:outline-none focus:ring-2 focus:ring-brand";
@@ -52,7 +54,25 @@ export default function ContactForm() {
         status === "error" ? "animate-shake" : ""
       } ${status === "success" ? "animate-pop" : ""}`}
     >
-      <p className="text-center text-zinc-700">
+      {/* Rendez-vous découverte : la porte d'entrée, réservée directement sur l'agenda Calendly de Lola */}
+      <div className="rounded-xl bg-accent/10 p-5">
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+          <h3 className="font-display text-lg font-extrabold text-brand">Rendez-vous découverte</h3>
+          <span className="rounded-full bg-white px-2.5 py-0.5 text-xs font-bold uppercase tracking-[0.1em] text-brand">
+            30&nbsp;min · gratuit
+          </span>
+        </div>
+        <p className="mt-2 text-sm leading-relaxed text-zinc-700">
+          On regarde vos réseaux ensemble&nbsp;: trois constats et une idée concrète pour faire venir du monde. Ensuite,
+          je vous envoie une proposition sous 48&nbsp;h.
+        </p>
+        <LienRendezVous className="mt-4 inline-flex items-center gap-2 rounded-full bg-brand px-4 py-2 text-sm font-semibold text-white transition hover:scale-105">
+          <CalendarCheck className="h-4 w-4" aria-hidden="true" />
+          Choisir un créneau
+        </LienRendezVous>
+      </div>
+
+      <p className="mt-6 text-center text-zinc-700">
         Un projet, une question&nbsp;? Je vous réponds sous {contact.delaiReponse}.
       </p>
 

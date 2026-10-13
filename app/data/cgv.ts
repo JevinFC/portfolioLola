@@ -10,8 +10,10 @@ export const cgv: Record<
   clientele: "Elles s’adressent exclusivement aux clients professionnels : entreprises, associations, collectivités et indépendants.",
   // CGV 2 : devis valables 1 mois
   devis: "Le devis est valable un mois à compter de sa date d’émission.",
-  // CGV 3 : franchise en base de TVA
-  tva: "Lola Gauchy bénéficie de la franchise en base de TVA : TVA non applicable, article 293 B du Code général des impôts.",
+  // CGV 3 : franchise en base de TVA ; prix hors taxes, la TVA s'y ajoute si Lola devient assujettie (octobre 2026)
+  tva:
+    "Lola Gauchy bénéficie de la franchise en base de TVA : TVA non applicable, article 293 B du Code général des impôts.\n" +
+    "Les prix étant indiqués hors taxes, si Lola Gauchy devient redevable de la TVA, celle-ci s’ajoute aux prix au taux en vigueur, à partir de la date de son assujettissement, y compris pour les abonnements en cours.",
   // CGV 4 : acompte de 30 %, solde à la livraison
   acompte: "Un acompte de 30 % du montant du devis est demandé à la signature. Le solde est dû à la livraison du travail.",
   // CGV 5 : à réception, par virement ou paiement en ligne
@@ -19,10 +21,10 @@ export const cgv: Record<
   // CGV 6 : deux séries de modifications, les suivantes facturées à l'heure
   modifications:
     "Le prix comprend deux séries de modifications. Au-delà, les modifications sont facturées en supplément, au temps passé, selon le tarif horaire indiqué sur le devis.",
-  // CGV 7 : l'acompte reste acquis ; suivi mensuel sans engagement, préavis de 15 jours
+  // CGV 7 : l'acompte reste acquis ; abonnement : une première période de 3 mois (octobre 2026), puis préavis de 15 jours
   annulation:
     "Si le client annule une mission en cours, l’acompte versé reste acquis à Lola Gauchy.\n" +
-    "Le suivi mensuel des réseaux sociaux est sans durée minimum d’engagement : le client peut y mettre fin à tout moment, avec un préavis de 15 jours.",
+    "L’abonnement mensuel aux réseaux sociaux est souscrit pour une première période de 3 mois. Ensuite, il se poursuit sans durée minimum d’engagement : le client peut y mettre fin à tout moment, avec un préavis de 15 jours.",
   // CGV 8 : cession complète après paiement, crédit « Lola Gauchy », sources en supplément, portfolio avec accord
   droits:
     "Une fois la facture entièrement payée, le client peut utiliser librement les créations livrées : Lola Gauchy lui cède les droits de reproduction, de représentation et d’adaptation, sur tous les supports, pour le monde entier et pour toute la durée légale des droits d’auteur.\n" +

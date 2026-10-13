@@ -8,4 +8,10 @@ export const contact = {
   linkedin: "https://www.linkedin.com/in/lola-gauchy/",
   instagram: "https://www.instagram.com/lolafetacom/",
   delaiReponse: "48 h", // ← délai de réponse annoncé dans le formulaire
+  // ← agenda en ligne de Lola (Calendly) pour le rendez-vous découverte : les boutons « Réserver un rendez-vous
+  // découverte » y mènent directement. Vide, ils mèneraient au formulaire de contact de l'accueil
+  rendezVous: "https://calendly.com/lolagauchy/rdvdecouverte",
 };
+
+// « 06 16 31 84 84 » → « +33616318484 », le format attendu par les liens tel: et par Google
+export const telephoneInternational = "+33" + contact.telephone.replace(/\s/g, "").slice(1);
